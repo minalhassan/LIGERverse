@@ -1,0 +1,77 @@
+[
+  {
+    "category": "Basic Rooms",
+    "rooms": [
+      { "name": "How to use TryHackMe", "link": "https://tryhackme.com/room/howtousetryhackme" },
+      { "name": "Tutorial", "link": "https://tryhackme.com/room/tutorial" },
+      { "name": "Learning Cyber Security", "link": "https://tryhackme.com/room/beginnerpathintro" },
+      { "name": "Threat Hunting: Intro", "link": "https://tryhackme.com/room/introductiontothreathunting" },
+      { "name": "Security Engineer Intro", "link": "https://tryhackme.com/room/securityengineerintro" },
+      { "name": "Careers in Cyber", "link": "https://tryhackme.com/room/careersincyber" }
+    ]
+  },
+  {
+    "category": "Linux Rooms",
+    "rooms": [
+      { "name": "Linux File System Analysis", "link": "https://tryhackme.com/room/linuxfilesystemanalysis" },
+      { "name": "Linux Fundamentals Part 1", "link": "https://tryhackme.com/room/linuxfundamentalspart1" },
+      { "name": "Linux Strength Training", "link": "https://tryhackme.com/room/linuxstrengthtraining" }
+    ]
+  },
+  {
+    "category": "Windows Fundamentals",
+    "rooms": [
+      { "name": "Windows Fundamentals 1", "link": "https://tryhackme.com/room/windowsfundamentals1xbx" },
+      { "name": "Windows Fundamentals 2", "link": "https://tryhackme.com/room/windowsfundamentals2x0x" },
+      { "name": "Windows Fundamentals 3", "link": "https://tryhackme.com/room/windowsfundamentals3xzx" }
+    ]
+  },
+  {
+    "category": "OSINT & Recon",
+    "rooms": [
+      { "name": "Passive Reconnaissance", "link": "https://tryhackme.com/room/passiverecon" },
+      { "name": "Active Reconnaissance", "link": "https://tryhackme.com/room/activerecon" },
+      { "name": "Shodan.io Tool", "link": "https://tryhackme.com/room/shodan" },
+      { "name": "Google Dorking", "link": "https://tryhackme.com/room/googledorking" }
+    ]
+  },
+  {
+    "category": "Networking",
+    "rooms": [
+      { "name": "Introductory Networking", "link": "https://tryhackme.com/room/introtonetworking" },
+      { "name": "What is Networking?", "link": "https://tryhackme.com/room/whatisnetworking" },
+      { "name": "HTTP in Detail", "link": "https://tryhackme.com/room/httpindetail" },
+      { "name": "DNS in Detail", "link": "https://tryhackme.com/room/dnsindetail" }
+    ]
+  },
+  {
+    "category": "Web Hacking",
+    "rooms": [
+      { "name": "NoSQL Injection", "link": "https://tryhackme.com/room/nosqlinjectiontutorial" },
+      { "name": "Advance SQL Injection", "link": "https://tryhackme.com/room/advancedsqlinjection" },
+      { "name": "XSS", "link": "https://tryhackme.com/room/axss" },
+      { "name": "OWASP Top 10", "link": "https://tryhackme.com/room/owasptop10" },
+      { "name": "Burp Suite: Repeater", "link": "https://tryhackme.com/room/burpsuiterepeater" },
+      { "name": "SQL Injection Lab", "link": "https://tryhackme.com/room/sqlilab" }
+    ]
+  },
+  {
+    "category": "Tools & Scripting",
+    "rooms": [
+      { "name": "Python Basics", "link": "https://tryhackme.com/room/pythonbasics" },
+      { "name": "Metasploit: Introduction", "link": "https://tryhackme.com/room/metasploitintro" },
+      { "name": "Nmap Live Host Discovery", "link": "https://tryhackme.com/room/nmap01" },
+      { "name": "Hydra", "link": "https://tryhackme.com/room/hydra" },
+      { "name": "RustScan", "link": "https://tryhackme.com/room/rustscan" }
+    ]
+  },
+  {
+    "category": "Forensics & Incident Response",
+    "rooms": [
+      { "name": "Forensics", "link": "https://tryhackme.com/room/forensics" },
+      { "name": "Memory Forensics", "link": "https://tryhackme.com/room/memoryforensics" },
+      { "name": "Investigating Windows", "link": "https://tryhackme.com/room/investigatingwindows" },
+      { "name": "Linux Server Forensics", "link": "https://tryhackme.com/room/linuxserverforensics" }
+    ]
+  }
+]

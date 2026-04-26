@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 224, 224, 224;
+  --background-start-rgb: 5, 5, 5;
+  --background-end-rgb: 10, 10, 10;
+  --matrix-green: #00ff41;
+  --cyber-blue: #00f3ff;
+  --cyber-red: #ff003c;
+}
+
+@theme {
+  --color-matrix-green: var(--matrix-green);
+  --color-cyber-blue: var(--cyber-blue);
+  --color-cyber-red: var(--cyber-red);
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: 'Inter', 'JetBrains Mono', monospace;
+  overflow-x: hidden;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: white;
+  }
+}
+
+@layer components {
+  .glass {
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .neon-border {
+    border: 2px solid var(--matrix-green);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+  }
+
+  .neon-text {
+    color: var(--matrix-green);
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+  }
+  
+  .cyber-button {
+    position: relative;
+    padding: 0.5rem 1.5rem;
+    background-color: transparent;
+    border: 2px solid var(--matrix-green);
+    color: var(--matrix-green);
+    transition: all 0.3s ease;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+  }
+
+  .cyber-button:hover {
+    background-color: var(--matrix-green);
+    color: black;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--matrix-green);
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+  background-color: var(--matrix-green);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.scanline {
+  width: 100%;
+  height: 100px;
+  z-index: 10;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 255, 65, 0.1) 50%, rgba(0, 0, 0, 0) 100%);
+  opacity: 0.1;
+  position: fixed;
+  bottom: 100%;
+  left: 0;
+  pointer-events: none;
+  animation: scanline 6s linear infinite;
+}
+
+@keyframes scanline {
+  0% { bottom: 100%; }
+  100% { bottom: -100px; }
+}
