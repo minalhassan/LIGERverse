@@ -17,7 +17,8 @@ import {
   Code,
   ChevronRight,
   Target,
-  ShieldAlert
+  ShieldAlert,
+  MonitorSmartphone
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { GlobalSearch } from './GlobalSearch';
@@ -133,6 +134,26 @@ export function Sidebar() {
           <ChevronRight className={cn(
             "w-4 h-4 transition-all relative z-10",
             pathname === '/labs' ? "opacity-100 rotate-90 text-[var(--matrix-green)]" : "opacity-0 group-hover:opacity-100 group-hover:translate-x-1"
+          )} />
+        </Link>
+
+        <Link
+          href="/roadmap"
+          className={cn(
+            "flex items-center justify-between group px-4 py-3 rounded-xl transition-all duration-300 relative overflow-hidden",
+            pathname === '/roadmap' 
+              ? "bg-gradient-to-r from-[var(--matrix-green)]/10 to-transparent text-[var(--matrix-green)] shadow-[inset_2px_0_0_var(--matrix-green)]" 
+              : "text-gray-400 hover:text-white hover:bg-white/5"
+          )}
+        >
+          {pathname === '/roadmap' && <div className="absolute inset-0 bg-gradient-to-r from-[var(--matrix-green)]/5 to-transparent pointer-events-none" />}
+          <div className="flex items-center gap-3 relative z-10">
+            <MonitorSmartphone className={cn("w-5 h-5 transition-transform group-hover:scale-110 duration-300", pathname === '/roadmap' && "drop-shadow-[0_0_8px_rgba(0,255,65,0.5)]")} />
+            <span className="font-medium text-sm tracking-wide">Career Roadmap</span>
+          </div>
+          <ChevronRight className={cn(
+            "w-4 h-4 transition-all relative z-10",
+            pathname === '/roadmap' ? "opacity-100 rotate-90 text-[var(--matrix-green)]" : "opacity-0 group-hover:opacity-100 group-hover:translate-x-1"
           )} />
         </Link>
       </nav>
