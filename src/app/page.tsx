@@ -118,26 +118,32 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {paths.map((path, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -10 }}
-              className="glass p-8 rounded-[40px] border-white/5 group relative overflow-hidden"
-            >
-              <div className={cn("w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform", path.color)}>
-                <path.icon className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-black text-white mb-4">{path.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-8">{path.desc}</p>
-              <button className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest group-hover:text-[var(--matrix-green)] transition-colors">
-                Explore Path <ChevronRight className="w-4 h-4" />
-              </button>
-              
-              <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity">
-                <path.icon className="w-32 h-32" />
-              </div>
-            </motion.div>
-          ))}
+          {paths.map((path, idx) => {
+            const linkHref = path.title === 'Beginner' ? '/modules/cryptography' : 
+                             path.title === 'Intermediate' ? '/modules/system-hacking' : 
+                             '/modules/privilege-escalation';
+            return (
+              <Link href={linkHref} key={idx} className="block group">
+                <motion.div
+                  whileHover={{ y: -10 }}
+                  className="glass p-8 rounded-[40px] border-white/5 h-full relative overflow-hidden"
+                >
+                  <div className={cn("w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform", path.color)}>
+                    <path.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-black text-white mb-4">{path.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-8">{path.desc}</p>
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest group-hover:text-[var(--matrix-green)] transition-colors">
+                    Explore Path <ChevronRight className="w-4 h-4" />
+                  </div>
+                  
+                  <div className="absolute top-0 right-0 p-8 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity">
+                    <path.icon className="w-32 h-32" />
+                  </div>
+                </motion.div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 

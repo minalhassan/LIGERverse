@@ -60,8 +60,13 @@ export function Terminal({ initialOutput, command, isOpen, onClose }: TerminalPr
             {/* Terminal Header */}
             <div className="bg-white/5 px-6 py-3 border-b border-white/10 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <TerminalIcon className="w-4 h-4 text-[var(--matrix-green)]" />
-                <span className="text-xs font-mono text-gray-400">bash — {command}</span>
+                <div className="flex gap-1.5 mr-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                </div>
+                <TerminalIcon className="w-4 h-4 text-gray-400" />
+                <span className="text-xs font-mono text-gray-400 font-bold">root@ligerverse: ~</span>
               </div>
               <div className="flex items-center gap-2">
                 <button 
@@ -80,28 +85,34 @@ export function Terminal({ initialOutput, command, isOpen, onClose }: TerminalPr
             {/* Terminal Body */}
             <div 
               ref={scrollRef}
-              className="flex-1 bg-black/40 p-8 font-mono text-sm overflow-y-auto leading-relaxed"
+              className="flex-1 bg-[#0a0a0a] p-6 font-mono text-[15px] overflow-y-auto leading-relaxed shadow-inner"
             >
-              <div className="flex items-center gap-2 text-[var(--matrix-green)] mb-4">
-                <span>$</span>
-                <span className="text-white">{command}</span>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-red-500 font-bold">root@ligerverse</span>
+                <span className="text-gray-400">:</span>
+                <span className="text-blue-400 font-bold">~</span>
+                <span className="text-gray-400">#</span>
+                <span className="text-green-400">{command}</span>
               </div>
               
-              <pre className="text-gray-300 whitespace-pre-wrap">
+              <pre className="text-gray-300 whitespace-pre-wrap font-medium">
                 {displayedText}
-                {isTyping && <span className="terminal-cursor" />}
+                {isTyping && <span className="inline-block w-2 h-4 bg-gray-400 ml-1 animate-pulse" />}
               </pre>
 
               {!isTyping && (
-                <div className="mt-4 flex items-center gap-2 text-[var(--matrix-green)]">
-                  <span>$</span>
-                  <span className="terminal-cursor" />
+                <div className="mt-4 flex items-center gap-2">
+                  <span className="text-red-500 font-bold">root@ligerverse</span>
+                  <span className="text-gray-400">:</span>
+                  <span className="text-blue-400 font-bold">~</span>
+                  <span className="text-gray-400">#</span>
+                  <span className="inline-block w-2 h-4 bg-gray-400 animate-pulse" />
                 </div>
               )}
             </div>
 
             {/* Terminal Footer */}
-            <div className="bg-black/40 px-6 py-3 border-t border-white/10 flex items-center justify-between text-[10px] text-gray-500 uppercase tracking-widest font-mono">
+            <div className="bg-[#111] px-4 py-2 border-t border-white/5 flex items-center justify-between text-[10px] text-gray-500 uppercase tracking-widest font-mono">
               <div className="flex gap-4">
                 <span>Status: Connected</span>
                 <span>Latency: 42ms</span>

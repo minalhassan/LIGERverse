@@ -46,15 +46,13 @@ export function CommandBlock({ command, mode }: CommandBlockProps) {
               {isCopied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
               {isCopied ? 'Copied' : 'Copy'}
             </button>
-            {command.simulation && (
-              <button
-                onClick={() => setIsTerminalOpen(true)}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--matrix-green)]/10 hover:bg-[var(--matrix-green)] text-[var(--matrix-green)] hover:text-black text-xs font-bold transition-all border border-[var(--matrix-green)]/20"
-              >
-                <TerminalIcon className="w-3.5 h-3.5" />
-                Simulate
-              </button>
-            )}
+            <button
+              onClick={() => setIsTerminalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--matrix-green)]/10 hover:bg-[var(--matrix-green)] text-[var(--matrix-green)] hover:text-black text-xs font-bold transition-all border border-[var(--matrix-green)]/20"
+            >
+              <TerminalIcon className="w-3.5 h-3.5" />
+              Simulate
+            </button>
           </div>
         </div>
 
@@ -97,7 +95,15 @@ export function CommandBlock({ command, mode }: CommandBlockProps) {
         isOpen={isTerminalOpen}
         onClose={() => setIsTerminalOpen(false)}
         command={command.command}
-        initialOutput={command.simulation || ''}
+        initialOutput={command.simulation || `[${new Date().toISOString().split('T')[1].split('.')[0]}] [+] Initializing LIGERverse Virtual Environment...
+[${new Date().toISOString().split('T')[1].split('.')[0]}] [*] Resolving dependencies for execution...
+[${new Date().toISOString().split('T')[1].split('.')[0]}] [*] Target process acquired.
+[${new Date().toISOString().split('T')[1].split('.')[0]}] [+] Parsing command arguments: ${command.command}
+[${new Date().toISOString().split('T')[1].split('.')[0]}] [>] Executing payload...
+
+[${new Date().toISOString().split('T')[1].split('.')[0]}] [OK] Operation completed successfully.
+[${new Date().toISOString().split('T')[1].split('.')[0]}] [i] Target output parsed and securely logged.
+`}
       />
     </div>
   );
