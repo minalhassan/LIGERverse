@@ -614,5 +614,105 @@
     ],
     "attackChain": [],
     "challenges": []
+  },
+  {
+    "id": "metasploit-framework",
+    "title": "Metasploit Framework",
+    "difficulty": "Intermediate",
+    "description": "What Is Metasploit? Metasploit is a popular open-source framework for creating, testing, and deploying exploits.",
+    "concept": "Metasploit's collection of exploits, payloads, and tools can speed up penetration testing. It only requires filling in basic information such as the target IP address, port number, and target software version.",
+    "tools": [
+      {
+        "name": "Metasploit: Networking",
+        "description": "View and manipulate network information and data transmission on a target network.",
+        "commands": [
+          { "command": "ipconfig", "description": "Show network interface configuration" },
+          { "command": "portfwd", "description": "Forward packets" },
+          { "command": "route", "description": "View / edit network routing table" }
+        ]
+      },
+      {
+        "name": "Meterpreter: Basic & File Handling",
+        "description": "Commands used in an existing meterpreter session to enumerate and manipulate the target.",
+        "commands": [
+          { "command": "sysinfo", "description": "Display system information" },
+          { "command": "ps", "description": "List and display running processes" },
+          { "command": "kill <PID>", "description": "Terminate a running process" },
+          { "command": "getuid", "description": "Display user ID" },
+          { "command": "upload / download", "description": "Upload or download a file" },
+          { "command": "pwd / lpwd", "description": "Print working directory (local / remote)" },
+          { "command": "cd / lcd", "description": "Change directory (local or remote)" },
+          { "command": "cat <file>", "description": "Display file content" },
+          { "command": "bglist", "description": "Show background running scripts" },
+          { "command": "bgrun", "description": "Make a script run in the background" },
+          { "command": "bgkill", "description": "Terminate a background process" },
+          { "command": "background", "description": "Move active session to background" },
+          { "command": "edit <FILE Name>", "description": "Edit a file in vi editor" },
+          { "command": "shell", "description": "Access shell on the target machine" },
+          { "command": "migrate <PID>", "description": "Switch to another process" },
+          { "command": "idletime", "description": "Display idle time of user" },
+          { "command": "screenshot", "description": "Take a screenshot" },
+          { "command": "clearev", "description": "Clear the system logs" },
+          { "command": "help", "description": "Help showing all the commands" },
+          { "command": "exit / quit", "description": "Exit the Meterpreter session" },
+          { "command": "shutdown / reboot", "description": "Restart the system" },
+          { "command": "use", "description": "Extension load" },
+          { "command": "channel", "description": "Show active channels" }
+        ]
+      },
+      {
+        "name": "Meterpreter: Process Handling",
+        "description": "Gather information on running software and processes on the target machine.",
+        "commands": [
+          { "command": "getpid", "description": "Display the process ID" },
+          { "command": "getuid", "description": "Display the user ID" },
+          { "command": "ps", "description": "Display running processes" },
+          { "command": "kill", "description": "Stop and terminate a process" },
+          { "command": "getprivs", "description": "Shows multiple privileges if possible" },
+          { "command": "reg", "description": "Access target machine registry" },
+          { "command": "shell", "description": "Access target machine shell" },
+          { "command": "execute", "description": "Run a specified command" },
+          { "command": "migrate", "description": "Move to a given destination process ID" }
+        ]
+      },
+      {
+        "name": "Meterpreter: Interface & Output",
+        "description": "View the target desktop and capture keystrokes.",
+        "commands": [
+          { "command": "enumdesktops", "description": "Show all available desktops" },
+          { "command": "getdesktop", "description": "Display current desktop" },
+          { "command": "keyscan_start", "description": "Start keylogger in target machine" },
+          { "command": "keyscan_stop", "description": "Stop keylogger in target machine" },
+          { "command": "set_desktop", "description": "Configure desktop" },
+          { "command": "keyscan_dump", "description": "Dump keylogger content" }
+        ]
+      },
+      {
+        "name": "Meterpreter: Password Management",
+        "description": "Steal user and system passwords.",
+        "commands": [
+          { "command": "hashdump", "description": "Access content of password file – Hash file" }
+        ]
+      },
+      {
+        "name": "MSFVenom Options",
+        "description": "Use these flags to generate reverse shell payloads and encoders.",
+        "commands": [
+          { "command": "msfvenom -p <payload>", "description": "Define payload to use" },
+          { "command": "msfvenom -l <type>", "description": "List module type (e.g. payloads, encoders)" },
+          { "command": "msfvenom -f <format>", "description": "Output format (e.g. exe, py, c)" },
+          { "command": "msfvenom -e <encoder>", "description": "Define which encoder to use" },
+          { "command": "msfvenom -a <arch>", "description": "Define architecture or platform to use" },
+          { "command": "msfvenom -s <space>", "description": "Define maximum payload capacity" },
+          { "command": "msfvenom -b <chars>", "description": "Define set of bad characters not to use" },
+          { "command": "msfvenom -i <num>", "description": "Define number of times to use encoder" },
+          { "command": "msfvenom -x <file>", "description": "Define a custom file to use as template" },
+          { "command": "msfvenom -o <output>", "description": "Save the payload to an output file" },
+          { "command": "msfvenom -h", "description": "Help" }
+        ]
+      }
+    ],
+    "attackChain": [],
+    "challenges": []
   }
 ]
