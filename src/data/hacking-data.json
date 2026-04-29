@@ -1235,5 +1235,128 @@
     ],
     "attackChain": [],
     "challenges": []
+  },
+  {
+    "id": "linux-fundamentals",
+    "title": "Linux Fundamentals",
+    "difficulty": "Beginner",
+    "description": "Essential Linux commands and utilities for system administration and penetration testing.",
+    "concept": "Mastering Linux fundamentals is crucial for any cybersecurity professional. This module covers basic system navigation, file manipulation, user management, and network configuration.",
+    "tools": [
+      {
+        "name": "System Commands",
+        "description": "Basic commands to interact with the system.",
+        "commands": [
+          { "command": "man <tool>", "description": "Opens man pages for the specified tool." },
+          { "command": "<tool> -h", "description": "Prints the help page of the tool." },
+          { "command": "apropos <keyword>", "description": "Searches through man pages' descriptions for instances of a given keyword." },
+          { "command": "cat", "description": "Concatenate and print files." },
+          { "command": "whoami", "description": "Displays current username." },
+          { "command": "id", "description": "Returns users identity." },
+          { "command": "hostname", "description": "Sets or prints the name of the current host system." },
+          { "command": "uname", "description": "Prints operating system name." },
+          { "command": "pwd", "description": "Returns working directory name." },
+          { "command": "ifconfig", "description": "Assign or view an address to a network interface and/or configure network interface parameters." },
+          { "command": "ip", "description": "Show or manipulate routing, network devices, interfaces, and tunnels." },
+          { "command": "netstat", "description": "Shows network status." },
+          { "command": "ss", "description": "Another utility to investigate sockets." },
+          { "command": "ps", "description": "Shows process status." },
+          { "command": "who", "description": "Displays who is logged in." },
+          { "command": "env", "description": "Prints environment or sets and executes a command." },
+          { "command": "journalctl", "description": "Query the systemd journal." },
+          { "command": "kill", "description": "Sends a signal to a process." },
+          { "command": "bg", "description": "Puts a process into background." },
+          { "command": "jobs", "description": "Lists all processes that are running in the background." },
+          { "command": "fg", "description": "Puts a process into the foreground." },
+          { "command": "ls", "description": "Lists directory contents." },
+          { "command": "cd", "description": "Changes the directory." },
+          { "command": "clear", "description": "Clears the terminal." },
+          { "command": "which", "description": "Returns the path to a file or link." },
+          { "command": "find", "description": "Searches for files in a directory hierarchy." },
+          { "command": "updatedb", "description": "Updates the locale database for existing contents on the system." },
+          { "command": "locate", "description": "Uses the locale database to find contents on the system." }
+        ]
+      },
+      {
+        "name": "Permission",
+        "description": "Managing file and directory permissions.",
+        "commands": [
+          { "command": "chmod", "description": "Changes permission of a file or directory." },
+          { "command": "chown", "description": "Changes the owner and group of a file or directory." }
+        ]
+      },
+      {
+        "name": "Packages & Repositories",
+        "description": "Installing and managing software packages.",
+        "commands": [
+          { "command": "dpkg", "description": "Install, remove and configure Debian-based packages." },
+          { "command": "apt", "description": "High-level package management command-line utility." },
+          { "command": "aptitude", "description": "Alternative to apt." },
+          { "command": "snap", "description": "Install, remove and configure snap packages." },
+          { "command": "gem", "description": "Standard package manager for Ruby." },
+          { "command": "pip", "description": "Standard package manager for Python." },
+          { "command": "git", "description": "Revision control system command-line utility." }
+        ]
+      },
+      {
+        "name": "Users & Groups Management",
+        "description": "Managing users, groups, and privileges.",
+        "commands": [
+          { "command": "sudo", "description": "Execute command as a different user." },
+          { "command": "su", "description": "Requests appropriate user credentials via PAM and switches to that user ID. A shell is then executed." },
+          { "command": "useradd", "description": "Creates a new user or update default new user information." },
+          { "command": "userdel", "description": "Deletes a user account and related files." },
+          { "command": "usermod", "description": "Modifies a user account." },
+          { "command": "addgroup", "description": "Adds a group to the system." },
+          { "command": "delgroup", "description": "Removes a group from the system." },
+          { "command": "passwd", "description": "Changes user password." }
+        ]
+      },
+      {
+        "name": "Requests",
+        "description": "Transferring data over the network.",
+        "commands": [
+          { "command": "curl", "description": "Command-line utility to transfer data from or to a server." },
+          { "command": "wget", "description": "An alternative to curl that downloads files from FTP or HTTP(s) server." },
+          { "command": "python3 -m http.server", "description": "Starts a Python3 web server on TCP port 8000." }
+        ]
+      },
+      {
+        "name": "Lists",
+        "description": "Listing various system devices and files.",
+        "commands": [
+          { "command": "lsblk", "description": "Lists block devices." },
+          { "command": "lsusb", "description": "Lists USB devices." },
+          { "command": "lsof", "description": "Lists opened files." },
+          { "command": "lspci", "description": "Lists PCI devices." }
+        ]
+      },
+      {
+        "name": "Directories & Files",
+        "description": "File manipulation and text processing.",
+        "commands": [
+          { "command": "touch", "description": "Creates an empty file." },
+          { "command": "mkdir", "description": "Creates a directory." },
+          { "command": "tree", "description": "Lists the contents of a directory recursively." },
+          { "command": "mv", "description": "Move or rename files or directories." },
+          { "command": "cp", "description": "Copy files or directories." },
+          { "command": "nano", "description": "Terminal based text editor." },
+          { "command": "more", "description": "Pager that is used to read STDOUT or files." },
+          { "command": "less", "description": "An alternative to more with more features." },
+          { "command": "head", "description": "Prints the first ten lines of STDOUT or a file." },
+          { "command": "tail", "description": "Prints the last ten lines of STDOUT or a file." },
+          { "command": "sort", "description": "Sorts the contents of STDOUT or a file." },
+          { "command": "grep", "description": "Searches for specific results that contain given patterns." },
+          { "command": "cut", "description": "Removes sections from each line of files." },
+          { "command": "tr", "description": "Replaces certain characters." },
+          { "command": "column", "description": "Command-line based utility that formats its input into multiple columns." },
+          { "command": "awk", "description": "Pattern scanning and processing language." },
+          { "command": "sed", "description": "A stream editor for filtering and transforming text." },
+          { "command": "wc", "description": "Prints newline, word, and byte counts for a given input." }
+        ]
+      }
+    ],
+    "attackChain": [],
+    "challenges": []
   }
 ]
