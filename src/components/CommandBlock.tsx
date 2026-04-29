@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Copy, Terminal as TerminalIcon, Check, HelpCircle, AlertTriangle, Lightbulb } from 'lucide-react';
+import { Copy, Terminal as TerminalIcon, Check, HelpCircle, AlertTriangle, Lightbulb, ExternalLink } from 'lucide-react';
 import { Command } from '@/types';
 import { Terminal } from './Terminal';
 import { cn } from '@/lib/utils';
@@ -30,7 +30,19 @@ export function CommandBlock({ command, mode }: CommandBlockProps) {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-mono text-gray-500">{command.description}</span>
+              {command.description.startsWith('http') ? (
+                <a 
+                  href={command.description} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-xs font-mono text-[var(--cyber-blue)] hover:text-white hover:underline transition-colors flex items-center gap-1"
+                >
+                  {command.description}
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              ) : (
+                <span className="text-xs font-mono text-gray-500">{command.description}</span>
+              )}
             </div>
             {command.isReadOnly ? (
               <div className="block bg-white/5 px-4 py-3 rounded-lg border border-white/5 text-gray-300 font-medium text-sm group-hover:border-[var(--matrix-green)]/20 transition-colors">

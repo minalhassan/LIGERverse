@@ -24,6 +24,7 @@ import { cn } from '@/lib/utils';
 import { GlobalSearch } from './GlobalSearch';
 
 const navItems = [
+  { id: 'linux-fundamentals', title: 'Linux Fundamentals', icon: TerminalIcon },
   { id: 'system-hacking', title: 'System Hacking', icon: Cpu },
   { id: 'web-hacking', title: 'Web Hacking', icon: Globe },
   { id: 'file-hacking', title: 'File Hacking', icon: FileCode },
