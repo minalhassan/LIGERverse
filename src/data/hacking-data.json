@@ -584,8 +584,8 @@
     "concept": "Privilege escalation focuses on misconfigurations, weak permissions, sudo rights, and kernel exploits. Automate the process using scripts like LinPEAS or WinPEAS.",
     "tools": [
       {
-        "name": "Enumeration",
-        "description": "Finding escalation vectors.",
+        "name": "Enumeration (Automated)",
+        "description": "Finding escalation vectors using automated scripts.",
         "commands": [
           {
             "command": "linpeas.sh",
@@ -602,13 +602,73 @@
         ]
       },
       {
-        "name": "Techniques",
-        "description": "Common methods for escalation.",
+        "name": "OS & Kernel Enumeration",
+        "description": "What's the distribution type? What version? Kernel version? Environmental variables?",
         "commands": [
-          {
-            "command": "find / -perm -u=s -type f 2>/dev/null",
-            "description": "Find SUID binaries"
-          }
+          { "command": "cat /etc/issue", "description": "Distribution type and version" },
+          { "command": "cat /etc/*-release", "description": "Distribution type and version" },
+          { "command": "cat /proc/version", "description": "Kernel version" },
+          { "command": "uname -a", "description": "Kernel version and architecture" },
+          { "command": "env", "description": "Environmental variables" },
+          { "command": "lscpu", "description": "CPU information" }
+        ]
+      },
+      {
+        "name": "Applications & Services",
+        "description": "What services are running? Which service has which user privilege? What applications are installed?",
+        "commands": [
+          { "command": "ps aux", "description": "List all running processes" },
+          { "command": "ps aux | grep root", "description": "Services running by root" },
+          { "command": "dpkg -l", "description": "Applications installed (Debian/Ubuntu)" },
+          { "command": "rpm -qa", "description": "Applications installed (RedHat/CentOS)" },
+          { "command": "crontab -l", "description": "What jobs are scheduled?" },
+          { "command": "ls -alh /var/spool/cron", "description": "Scheduled cron jobs" }
+        ]
+      },
+      {
+        "name": "Communications & Networking",
+        "description": "What NIC(s) does the system have? What are the network configuration settings?",
+        "commands": [
+          { "command": "ifconfig -a", "description": "NICs and connected networks" },
+          { "command": "cat /etc/network/interfaces", "description": "Network interfaces" },
+          { "command": "iptables -L", "description": "Firewall rules" },
+          { "command": "netstat -antup", "description": "Active network connections" },
+          { "command": "arp -e", "description": "Cached IP and MAC addresses" },
+          { "command": "route", "description": "Routing table" }
+        ]
+      },
+      {
+        "name": "Confidential Information & Users",
+        "description": "Who are you? Who is logged in? What sensitive files can be found? Passwords?",
+        "commands": [
+          { "command": "id", "description": "Current user ID and groups" },
+          { "command": "last", "description": "Who has been logged in?" },
+          { "command": "cat /etc/passwd | cut -d:", "description": "List of users" },
+          { "command": "cat /etc/shadow", "description": "Password hashes (requires root)" },
+          { "command": "cat ~/.bash_history", "description": "User command history" },
+          { "command": "cat ~/.ssh/id_rsa", "description": "Private SSH key" }
+        ]
+      },
+      {
+        "name": "File Systems & Permissions",
+        "description": "Which files have weak permissions? Are there any SUID/SGID binaries?",
+        "commands": [
+          { "command": "find / -perm -u=s -type f 2>/dev/null", "description": "Find SUID binaries" },
+          { "command": "find / -perm -g=s -type f 2>/dev/null", "description": "Find SGID binaries" },
+          { "command": "find / -writable -type d 2>/dev/null", "description": "World-writeable folders" },
+          { "command": "find / -perm -o+x -type d 2>/dev/null", "description": "World-executable folders" },
+          { "command": "mount", "description": "How are file-systems mounted?" },
+          { "command": "cat /etc/fstab", "description": "Unmounted file-systems" }
+        ]
+      },
+      {
+        "name": "Interactive Shells & Tunnels",
+        "description": "Spawning TTY shells and creating tunnels.",
+        "commands": [
+          { "command": "python -c 'import pty;pty.spawn(\"/bin/bash\")'", "description": "Spawn an interactive TTY shell" },
+          { "command": "nc -lvp 4444", "description": "Setup a netcat listener" },
+          { "command": "ssh -L 8080:127.0.0.1:80 root@192.168.1.7", "description": "Local port forwarding" },
+          { "command": "ssh -D 127.0.0.1:9050 -N user@ip", "description": "Dynamic port forwarding (SOCKS Proxy)" }
         ]
       }
     ],
