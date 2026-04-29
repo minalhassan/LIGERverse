@@ -15,7 +15,8 @@ import {
   Wrench,
   GraduationCap,
   Code,
-  ChevronRight
+  ChevronRight,
+  Target
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { GlobalSearch } from './GlobalSearch';
@@ -28,6 +29,7 @@ const navItems = [
   { id: 'forensics', title: 'Forensics', icon: Search },
   { id: 'password-cracking', title: 'Password Cracking', icon: Shield },
   { id: 'privilege-escalation', title: 'Privilege Escalation', icon: Zap },
+  { id: 'metasploit-framework', title: 'Metasploit Framework', icon: Target },
 ];
 
 export function Sidebar() {
@@ -37,8 +39,12 @@ export function Sidebar() {
     <aside className="w-72 h-screen bg-black/80 backdrop-blur-xl border-r border-white/10 fixed left-0 top-0 z-50 flex flex-col">
       <div className="p-8 border-b border-white/10">
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 bg-[var(--matrix-green)] flex items-center justify-center rounded-xl shadow-[0_0_20px_rgba(0,255,65,0.4)] group-hover:scale-110 transition-transform duration-500">
-            <Cpu className="text-black w-6 h-6" />
+          <div className="w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+            <img 
+              src="/logo.png" 
+              alt="LIGERverse Logo" 
+              className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(0,255,65,0.4)]"
+            />
           </div>
           <div>
             <h1 className="text-xl font-black tracking-tighter leading-none text-white">LIGER<span className="text-[var(--matrix-green)]">VERSE</span></h1>
