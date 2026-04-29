@@ -714,5 +714,127 @@
     ],
     "attackChain": [],
     "challenges": []
+  },
+  {
+    "id": "owasp-top-10",
+    "title": "OWASP Top 10 (2021)",
+    "difficulty": "Intermediate",
+    "description": "The OWASP Top Ten is a standard awareness document for developers and web application security, representing a broad consensus about the most critical security risks.",
+    "concept": "This module maps essential security cheat sheets to each of the OWASP Top Ten 2021 categories, helping you build, design, and maintain secure applications.",
+    "tools": [
+      {
+        "name": "A01:2021 – Broken Access Control",
+        "description": "Failures in enforcing permissions allowing attackers to access unauthorized functionality or data.",
+        "commands": [
+          { "command": "owasp-doc --view \"Authorization\"", "description": "Authorization Cheat Sheet" },
+          { "command": "owasp-doc --view \"IDOR Prevention\"", "description": "Insecure Direct Object Reference Prevention Cheat Sheet" },
+          { "command": "owasp-doc --view \"Transaction Auth\"", "description": "Transaction Authorization Cheat Sheet" },
+          { "command": "owasp-doc --view \"CSRF Prevention\"", "description": "Cross-Site Request Forgery Prevention Cheat Sheet" }
+        ]
+      },
+      {
+        "name": "A02:2021 – Cryptographic Failures",
+        "description": "Failures related to cryptography (or lack thereof) which often lead to sensitive data exposure.",
+        "commands": [
+          { "command": "owasp-doc --view \"Cryptographic Storage\"", "description": "Cryptographic Storage Cheat Sheet" },
+          { "command": "owasp-doc --view \"TLS\"", "description": "Transport Layer Security Cheat Sheet" },
+          { "command": "owasp-doc --view \"HSTS\"", "description": "HTTP Strict Transport Security Cheat Sheet" },
+          { "command": "owasp-doc --view \"Secrets Management\"", "description": "Secrets Management Cheat Sheet" },
+          { "command": "owasp-doc --view \"Key Management\"", "description": "Key Management Cheat Sheet" },
+          { "command": "owasp-doc --view \"Pinning\"", "description": "Pinning Cheat Sheet" }
+        ]
+      },
+      {
+        "name": "A03:2021 – Injection",
+        "description": "Vulnerabilities where user-supplied data is not validated, filtered, or sanitized by the application.",
+        "commands": [
+          { "command": "owasp-doc --view \"Injection Prevention\"", "description": "Injection Prevention Cheat Sheet" },
+          { "command": "owasp-doc --view \"LDAP Injection Prevention\"", "description": "LDAP Injection Prevention Cheat Sheet" },
+          { "command": "owasp-doc --view \"OS Command Injection Defense\"", "description": "OS Command Injection Defense Cheat Sheet" },
+          { "command": "owasp-doc --view \"Injection Prevention in Java\"", "description": "Injection Prevention in Java Cheat Sheet" },
+          { "command": "owasp-doc --view \"SQL Injection Prevention\"", "description": "SQL Injection Prevention Cheat Sheet" },
+          { "command": "owasp-doc --view \"Query Parameterization\"", "description": "Query Parameterization Cheat Sheet" },
+          { "command": "owasp-doc --view \"XSS Prevention\"", "description": "Cross Site Scripting Prevention Cheat Sheet" },
+          { "command": "owasp-doc --view \"DOM based XSS Prevention\"", "description": "DOM based XSS Prevention Cheat Sheet" },
+          { "command": "owasp-doc --view \"XSS Filter Evasion\"", "description": "XSS Filter Evasion Cheat Sheet" },
+          { "command": "owasp-doc --view \"CSP\"", "description": "Content Security Policy Cheat Sheet" }
+        ]
+      },
+      {
+        "name": "A04:2021 – Insecure Design",
+        "description": "Risks related to design flaws, requiring the use of threat modeling and secure design patterns.",
+        "commands": [
+          { "command": "owasp-doc --view \"Threat Modeling\"", "description": "Threat Modeling Cheat Sheet" },
+          { "command": "owasp-doc --view \"Abuse Case\"", "description": "Abuse Case Cheat Sheet" },
+          { "command": "owasp-doc --view \"Attack Surface Analysis\"", "description": "Attack Surface Analysis Cheat Sheet" }
+        ]
+      },
+      {
+        "name": "A05:2021 – Security Misconfiguration",
+        "description": "Insecure default settings, incomplete configurations, or misconfigured HTTP headers.",
+        "commands": [
+          { "command": "owasp-doc --view \"IaC Security\"", "description": "Infrastructure as Code Security Cheat Sheet" },
+          { "command": "owasp-doc --view \"XXE Prevention\"", "description": "XML External Entity Prevention Cheat Sheet" },
+          { "command": "owasp-doc --view \"PHP Configuration\"", "description": "PHP Configuration Cheat Sheet" },
+          { "command": "owasp-doc --view \"Docker Security\"", "description": "Docker Security Cheat Sheet" }
+        ]
+      },
+      {
+        "name": "A06:2021 – Vulnerable and Outdated Components",
+        "description": "Exploitation of vulnerabilities in outdated third-party frameworks, libraries, and components.",
+        "commands": [
+          { "command": "owasp-doc --view \"Dependency Management\"", "description": "Vulnerable Dependency Management Cheat Sheet" },
+          { "command": "owasp-doc --view \"Third Party JS\"", "description": "Third Party JavaScript Management Cheat Sheet" },
+          { "command": "owasp-doc --view \"npm Security\"", "description": "npm Security best practices" }
+        ]
+      },
+      {
+        "name": "A07:2021 – Identification and Authentication Failures",
+        "description": "Issues when user identities, authentication, and session management are not implemented securely.",
+        "commands": [
+          { "command": "owasp-doc --view \"Authentication\"", "description": "Authentication Cheat Sheet" },
+          { "command": "owasp-doc --view \"Session Management\"", "description": "Session Management Cheat Sheet" },
+          { "command": "owasp-doc --view \"Forgot Password\"", "description": "Forgot Password Cheat Sheet" },
+          { "command": "owasp-doc --view \"Security Questions\"", "description": "Choosing and Using Security Questions Cheat Sheet" },
+          { "command": "owasp-doc --view \"Credential Stuffing\"", "description": "Credential Stuffing Prevention Cheat Sheet" },
+          { "command": "owasp-doc --view \"Denial of Service\"", "description": "Denial of Service Cheat Sheet" },
+          { "command": "owasp-doc --view \"JWT for Java\"", "description": "JSON Web Token for Java Cheat Sheet" },
+          { "command": "owasp-doc --view \"MFA\"", "description": "Multifactor Authentication Cheat Sheet" },
+          { "command": "owasp-doc --view \"Password Storage\"", "description": "Password Storage Cheat Sheet" },
+          { "command": "owasp-doc --view \"SAML Security\"", "description": "SAML Security Cheat Sheet" }
+        ]
+      },
+      {
+        "name": "A08:2021 – Software and Data Integrity Failures",
+        "description": "Code and infrastructure that does not protect against integrity violations.",
+        "commands": [
+          { "command": "owasp-doc --view \"Deserialization\"", "description": "Deserialization Cheat Sheet" }
+        ]
+      },
+      {
+        "name": "A09:2021 – Security Logging and Monitoring Failures",
+        "description": "Failures in logging and monitoring which allow attackers to further extract data or persist in systems.",
+        "commands": [
+          { "command": "owasp-doc --view \"Logging\"", "description": "Logging Cheat Sheet" },
+          { "command": "owasp-doc --view \"Logging Vocabulary\"", "description": "Application Logging Vocabulary Cheat Sheet" }
+        ]
+      },
+      {
+        "name": "A10:2021 – Server-Side Request Forgery (SSRF)",
+        "description": "Flaws where a web application fetches a remote resource without validating the user-supplied URL.",
+        "commands": [
+          { "command": "owasp-doc --view \"SSRF Prevention\"", "description": "Server Side Request Forgery Prevention Cheat Sheet" }
+        ]
+      },
+      {
+        "name": "A11:2021 – Next Steps",
+        "description": "Additional guidelines and next steps for maintaining secure applications.",
+        "commands": [
+          { "command": "owasp-doc --view \"Next Steps DoS\"", "description": "Denial of Service Cheat Sheet" }
+        ]
+      }
+    ],
+    "attackChain": [],
+    "challenges": []
   }
 ]

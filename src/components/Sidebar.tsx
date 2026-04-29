@@ -16,7 +16,8 @@ import {
   GraduationCap,
   Code,
   ChevronRight,
-  Target
+  Target,
+  ShieldAlert
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { GlobalSearch } from './GlobalSearch';
@@ -30,6 +31,7 @@ const navItems = [
   { id: 'password-cracking', title: 'Password Cracking', icon: Shield },
   { id: 'privilege-escalation', title: 'Privilege Escalation', icon: Zap },
   { id: 'metasploit-framework', title: 'Metasploit Framework', icon: Target },
+  { id: 'owasp-top-10', title: 'OWASP Top 10', icon: ShieldAlert },
 ];
 
 export function Sidebar() {
