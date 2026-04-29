@@ -1,0 +1,151 @@
+Keep Learning            Power Shell
+Bash
+C++
+Google Drive
+JavaScript
+Programming Skills
+Box      OneDrive
+Go
+S3   Dropbox   iCloud
+Python              Common Cloud Storage
+AW S    GCP    Azure
+Understand the basics and general flow of deploying in the cloud
+Common Cloud Environments
+Understand the Concept of Serverless
+Private   Public   Hybrid
+Understand the concept of Infrastructure as Code
+Cloud M odels
+Understand the differences between cloud and on-premises
+SaaS    PaaS    IaaS
+Understand the Concept of Security in the Cloud
+Understand Cloud Services
+Cloud Skills and Knowledge
+Compliance     M anagement       Zero Day    Known vs Unknown   APT        Directory Traversal
+Understand Threat Classification
+Stakeholders    HR     Legal                                          Pass the Hash
+Understand Audience         Eradication  Recovery   Lessons Learned
+M emory Leak
+Joe Sandbox   urlvoid   W HOIS
+Preparation   Identification   Containment
+Buffer Overflow
+VirusTotal    urlscan   any.run     Understand the Incident Response Process
+Rogue Access Point
+Understand Common Tools           W PA vs W PA2 vs W PA3 vs W EP
+Replay Attack
+Jump Server    Endpoint Security
+EAP vs PEAP      W PS       ACL
+Deauth Attack
+Sinkholes  ACLs     Patching
+NIPS   Host Based Firewall   Sandboxing
+DNS Poisoning
+Port Blocking     Group Policy
+Firewall & Nextgen Firewall   HIPS  NIDS
+Evil Twin     VLAN Hopping
+M AC-based      NAC-based
+Antivirus    Antimalware  EDR  DLP
+Spoofing   SQL Injection   XSS
+Understand Hardening Concepts
+Understand the following Terms
+DoS vs DDoS   M ITM   CSRF
+Packet Captures    Firewall Logs     DNSSEC  LDAPS   SRTP    S/M IM E
+Common Attacks
+Event Logs   syslogs   netflow      FTP vs SFTP    SSL vs TLS    IPSEC
+Brute Force vs Password Spray
+Learn how to find and use these logs        Secure vs Unsecure Protocols
+Typo Squatting
+LOLBAS  GTFOBINS W ADCOM S         SIEM            SOAR
+Drive by Attack
+Using tools for Unintended Purposes
+Understand the following
+W atering Hole Attack
+NIST      CIS      CSF
+ParrotOS         Kali Linux
+Reconnaissance  Impersonation
+ISO          RM F              Common Distros for hacking
+Understand Common Standards                                         Social Engineering
+ATT&CK
+FTK Imager                                                  Zero day
+Diamond M odel      Kill Chain
+curl    wireshark   memdump         Understand Frameworks               Dumpster Diving
+tracert  winhex  autopsy  ipconfig     PKI         Obfuscation          Shoulder Surfing   Tailgating
+tail  hping  head grep  nslookup           Private vs Public Keys           Smishing    Spam vs Spim
+dig  nmap  ping  arp  cat  dd    Salting   Hashing    Key Exchange     Phishing  W hishing  W haling
+Tools for Incident Response and Discovery        Basics of Cryptography             Attack Types and Differences
+Perimiter vs DM Z vs Segmentation        Authentication vs Authorization      Learn how M alware works and Types
+Penetration Testing Rules of Engagement        Basics of IDS and IPS         W eb Based Attacks and OW ASP10
+Basics of Reverse Engineering         Understand Concept of Isolation          Privilege Escalation
+Basics of Vulnerability M anagement        Operating System Hardening           Understand CIA Triad
+Basics and Concepts of Threat Hunting      M FA & 2FA       Honeypots         Understand Handshakes
+Understand Basics of Forensics             Cyber Kill Chain             Basics of Threat Intel, OSINT
+Understand Concept of Runbooks       Understand Backups and Resiliency      True Negative / True Positive
+Understand Concept of Defense in Depth     Understand the Definition of Risk       False Negative / False Positive
+Understand Common Exploit Frameworks     Roles of Compliance and Auditors        Blue / Red / Purple Teams
+Understand Common Hacking Tools        Core Concepts of Zero Trust
+Security Skills and Knowledge
+Basics of NAS and SAN
+Authentication M ethodologies              Network Protocols
+SSL and TLS Basics
+Certificates     Local Auth          HTTP / HTTPS    SSL / TLS
+Common Ports and their Uses
+Kerberos  RADIUS  LDAP  SSO       SSH   RDP   FTP   SFTP
+Common Protocols and their Uses
+Network Topologies
+Troubleshooting Tools
+Understand the OSI M odel
+Star  Ring  M esh   Bus
+Protocol Analyzers
+Functions of each
+Port Scanners
+Networking Knowledge
+DHCP  DNS  NTP   IPAM
+Packet Sniffers
+Understand these
+tracert  nslookup   iptables
+M AN   LAN  W AN  W LAN
+route  nmap  tcpdump  arp
+Common Commands
+ipconfig  ping  dig  netstat        Router   Switch    VPN
+Troubleshooting
+DHCP   DNS   NAT   IP
+Basics of Virtualization
+Performing CRUD on Files
+HostOS       VM             VLAN   DM Z   ARP  VM
+Installing Software and Applications
+Understand the Terminology
+Hypervisor    GuestOS
+Understand Permissions
+Common Virtualization Technologies            default gateway
+Navigating using GUI and CLI
+esxi       proxmox                subnet mask
+Different Versions and Differences
+VM W are      VirtualBox         localhost   loopback  CIDR
+Installation and Configuration
+IP Terminology
+Learn following for each
+CISSP
+Public vs Private IP Addresses
+GIAC     OSCP     CREST
+Operating Systems
+Basics of Subnetting
+GSEC     GPEN     GW APT
+W indows  Linux  M acOS
+CEH     CISA      CISM
+Advanced Certifications                                                Google Suite
+CompTIA Security+                  Basics of Computer Networking               iCloud
+CompTIA Network+     CCNA            Understand Basics of Popular Suites           M S Office Suite
+CompTIA A+    CompTIA Linux+            OS-Independent Troubleshooting
+W iFi    Infrared
+Beginner Certifications               Connection Types and their function
+NFC    Bluetooth
+Certifications
+Computer Hardware Components
+SANS Holiday Hack Challenge
+Fundamental IT Skills
+picoCTF
+VulnHub
+TryHackM e                                                 ro a d m a p .s h
+Cyber Security
+HackTheBox                                        along with other similar roadmaps
+Find the detailed version of this roadmap
+CTFs (Capture the Flag)
+----------------Page (0) Break----------------

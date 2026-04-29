@@ -6,6 +6,7 @@ export interface Command {
   tip?: string;
   simulation?: string;
   tags?: string[];
+  isReadOnly?: boolean;
 }
 
 export interface Tool {

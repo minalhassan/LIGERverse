@@ -32,27 +32,37 @@ export function CommandBlock({ command, mode }: CommandBlockProps) {
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xs font-mono text-gray-500">{command.description}</span>
             </div>
-            <code className="block bg-black/40 px-4 py-3 rounded-lg border border-white/5 text-[var(--matrix-green)] font-mono text-sm break-all group-hover:border-[var(--matrix-green)]/20 transition-colors">
-              <span className="text-gray-500 mr-2">$</span>
-              {command.command}
-            </code>
+            {command.isReadOnly ? (
+              <div className="block bg-white/5 px-4 py-3 rounded-lg border border-white/5 text-gray-300 font-medium text-sm group-hover:border-[var(--matrix-green)]/20 transition-colors">
+                {command.command}
+              </div>
+            ) : (
+              <code className="block bg-black/40 px-4 py-3 rounded-lg border border-white/5 text-[var(--matrix-green)] font-mono text-sm break-all group-hover:border-[var(--matrix-green)]/20 transition-colors">
+                <span className="text-gray-500 mr-2">$</span>
+                {command.command}
+              </code>
+            )}
           </div>
 
           <div className="flex items-center gap-2 shrink-0">
-            <button
-              onClick={copyToClipboard}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-bold transition-all"
-            >
-              {isCopied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
-              {isCopied ? 'Copied' : 'Copy'}
-            </button>
-            <button
-              onClick={() => setIsTerminalOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--matrix-green)]/10 hover:bg-[var(--matrix-green)] text-[var(--matrix-green)] hover:text-black text-xs font-bold transition-all border border-[var(--matrix-green)]/20"
-            >
-              <TerminalIcon className="w-3.5 h-3.5" />
-              Simulate
-            </button>
+            {!command.isReadOnly && (
+              <>
+                <button
+                  onClick={copyToClipboard}
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white text-xs font-bold transition-all"
+                >
+                  {isCopied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
+                  {isCopied ? 'Copied' : 'Copy'}
+                </button>
+                <button
+                  onClick={() => setIsTerminalOpen(true)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--matrix-green)]/10 hover:bg-[var(--matrix-green)] text-[var(--matrix-green)] hover:text-black text-xs font-bold transition-all border border-[var(--matrix-green)]/20"
+                >
+                  <TerminalIcon className="w-3.5 h-3.5" />
+                  Simulate
+                </button>
+              </>
+            )}
           </div>
         </div>
 

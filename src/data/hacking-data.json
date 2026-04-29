@@ -626,89 +626,248 @@
         "name": "Metasploit: Networking",
         "description": "View and manipulate network information and data transmission on a target network.",
         "commands": [
-          { "command": "ipconfig", "description": "Show network interface configuration" },
-          { "command": "portfwd", "description": "Forward packets" },
-          { "command": "route", "description": "View / edit network routing table" }
+          {
+            "command": "ipconfig",
+            "description": "Show network interface configuration"
+          },
+          {
+            "command": "portfwd",
+            "description": "Forward packets"
+          },
+          {
+            "command": "route",
+            "description": "View / edit network routing table"
+          }
         ]
       },
       {
         "name": "Meterpreter: Basic & File Handling",
         "description": "Commands used in an existing meterpreter session to enumerate and manipulate the target.",
         "commands": [
-          { "command": "sysinfo", "description": "Display system information" },
-          { "command": "ps", "description": "List and display running processes" },
-          { "command": "kill <PID>", "description": "Terminate a running process" },
-          { "command": "getuid", "description": "Display user ID" },
-          { "command": "upload / download", "description": "Upload or download a file" },
-          { "command": "pwd / lpwd", "description": "Print working directory (local / remote)" },
-          { "command": "cd / lcd", "description": "Change directory (local or remote)" },
-          { "command": "cat <file>", "description": "Display file content" },
-          { "command": "bglist", "description": "Show background running scripts" },
-          { "command": "bgrun", "description": "Make a script run in the background" },
-          { "command": "bgkill", "description": "Terminate a background process" },
-          { "command": "background", "description": "Move active session to background" },
-          { "command": "edit <FILE Name>", "description": "Edit a file in vi editor" },
-          { "command": "shell", "description": "Access shell on the target machine" },
-          { "command": "migrate <PID>", "description": "Switch to another process" },
-          { "command": "idletime", "description": "Display idle time of user" },
-          { "command": "screenshot", "description": "Take a screenshot" },
-          { "command": "clearev", "description": "Clear the system logs" },
-          { "command": "help", "description": "Help showing all the commands" },
-          { "command": "exit / quit", "description": "Exit the Meterpreter session" },
-          { "command": "shutdown / reboot", "description": "Restart the system" },
-          { "command": "use", "description": "Extension load" },
-          { "command": "channel", "description": "Show active channels" }
+          {
+            "command": "sysinfo",
+            "description": "Display system information"
+          },
+          {
+            "command": "ps",
+            "description": "List and display running processes"
+          },
+          {
+            "command": "kill <PID>",
+            "description": "Terminate a running process"
+          },
+          {
+            "command": "getuid",
+            "description": "Display user ID"
+          },
+          {
+            "command": "upload / download",
+            "description": "Upload or download a file"
+          },
+          {
+            "command": "pwd / lpwd",
+            "description": "Print working directory (local / remote)"
+          },
+          {
+            "command": "cd / lcd",
+            "description": "Change directory (local or remote)"
+          },
+          {
+            "command": "cat <file>",
+            "description": "Display file content"
+          },
+          {
+            "command": "bglist",
+            "description": "Show background running scripts"
+          },
+          {
+            "command": "bgrun",
+            "description": "Make a script run in the background"
+          },
+          {
+            "command": "bgkill",
+            "description": "Terminate a background process"
+          },
+          {
+            "command": "background",
+            "description": "Move active session to background"
+          },
+          {
+            "command": "edit <FILE Name>",
+            "description": "Edit a file in vi editor"
+          },
+          {
+            "command": "shell",
+            "description": "Access shell on the target machine"
+          },
+          {
+            "command": "migrate <PID>",
+            "description": "Switch to another process"
+          },
+          {
+            "command": "idletime",
+            "description": "Display idle time of user"
+          },
+          {
+            "command": "screenshot",
+            "description": "Take a screenshot"
+          },
+          {
+            "command": "clearev",
+            "description": "Clear the system logs"
+          },
+          {
+            "command": "help",
+            "description": "Help showing all the commands"
+          },
+          {
+            "command": "exit / quit",
+            "description": "Exit the Meterpreter session"
+          },
+          {
+            "command": "shutdown / reboot",
+            "description": "Restart the system"
+          },
+          {
+            "command": "use",
+            "description": "Extension load"
+          },
+          {
+            "command": "channel",
+            "description": "Show active channels"
+          }
         ]
       },
       {
         "name": "Meterpreter: Process Handling",
         "description": "Gather information on running software and processes on the target machine.",
         "commands": [
-          { "command": "getpid", "description": "Display the process ID" },
-          { "command": "getuid", "description": "Display the user ID" },
-          { "command": "ps", "description": "Display running processes" },
-          { "command": "kill", "description": "Stop and terminate a process" },
-          { "command": "getprivs", "description": "Shows multiple privileges if possible" },
-          { "command": "reg", "description": "Access target machine registry" },
-          { "command": "shell", "description": "Access target machine shell" },
-          { "command": "execute", "description": "Run a specified command" },
-          { "command": "migrate", "description": "Move to a given destination process ID" }
+          {
+            "command": "getpid",
+            "description": "Display the process ID"
+          },
+          {
+            "command": "getuid",
+            "description": "Display the user ID"
+          },
+          {
+            "command": "ps",
+            "description": "Display running processes"
+          },
+          {
+            "command": "kill",
+            "description": "Stop and terminate a process"
+          },
+          {
+            "command": "getprivs",
+            "description": "Shows multiple privileges if possible"
+          },
+          {
+            "command": "reg",
+            "description": "Access target machine registry"
+          },
+          {
+            "command": "shell",
+            "description": "Access target machine shell"
+          },
+          {
+            "command": "execute",
+            "description": "Run a specified command"
+          },
+          {
+            "command": "migrate",
+            "description": "Move to a given destination process ID"
+          }
         ]
       },
       {
         "name": "Meterpreter: Interface & Output",
         "description": "View the target desktop and capture keystrokes.",
         "commands": [
-          { "command": "enumdesktops", "description": "Show all available desktops" },
-          { "command": "getdesktop", "description": "Display current desktop" },
-          { "command": "keyscan_start", "description": "Start keylogger in target machine" },
-          { "command": "keyscan_stop", "description": "Stop keylogger in target machine" },
-          { "command": "set_desktop", "description": "Configure desktop" },
-          { "command": "keyscan_dump", "description": "Dump keylogger content" }
+          {
+            "command": "enumdesktops",
+            "description": "Show all available desktops"
+          },
+          {
+            "command": "getdesktop",
+            "description": "Display current desktop"
+          },
+          {
+            "command": "keyscan_start",
+            "description": "Start keylogger in target machine"
+          },
+          {
+            "command": "keyscan_stop",
+            "description": "Stop keylogger in target machine"
+          },
+          {
+            "command": "set_desktop",
+            "description": "Configure desktop"
+          },
+          {
+            "command": "keyscan_dump",
+            "description": "Dump keylogger content"
+          }
         ]
       },
       {
         "name": "Meterpreter: Password Management",
         "description": "Steal user and system passwords.",
         "commands": [
-          { "command": "hashdump", "description": "Access content of password file – Hash file" }
+          {
+            "command": "hashdump",
+            "description": "Access content of password file – Hash file"
+          }
         ]
       },
       {
         "name": "MSFVenom Options",
         "description": "Use these flags to generate reverse shell payloads and encoders.",
         "commands": [
-          { "command": "msfvenom -p <payload>", "description": "Define payload to use" },
-          { "command": "msfvenom -l <type>", "description": "List module type (e.g. payloads, encoders)" },
-          { "command": "msfvenom -f <format>", "description": "Output format (e.g. exe, py, c)" },
-          { "command": "msfvenom -e <encoder>", "description": "Define which encoder to use" },
-          { "command": "msfvenom -a <arch>", "description": "Define architecture or platform to use" },
-          { "command": "msfvenom -s <space>", "description": "Define maximum payload capacity" },
-          { "command": "msfvenom -b <chars>", "description": "Define set of bad characters not to use" },
-          { "command": "msfvenom -i <num>", "description": "Define number of times to use encoder" },
-          { "command": "msfvenom -x <file>", "description": "Define a custom file to use as template" },
-          { "command": "msfvenom -o <output>", "description": "Save the payload to an output file" },
-          { "command": "msfvenom -h", "description": "Help" }
+          {
+            "command": "msfvenom -p <payload>",
+            "description": "Define payload to use"
+          },
+          {
+            "command": "msfvenom -l <type>",
+            "description": "List module type (e.g. payloads, encoders)"
+          },
+          {
+            "command": "msfvenom -f <format>",
+            "description": "Output format (e.g. exe, py, c)"
+          },
+          {
+            "command": "msfvenom -e <encoder>",
+            "description": "Define which encoder to use"
+          },
+          {
+            "command": "msfvenom -a <arch>",
+            "description": "Define architecture or platform to use"
+          },
+          {
+            "command": "msfvenom -s <space>",
+            "description": "Define maximum payload capacity"
+          },
+          {
+            "command": "msfvenom -b <chars>",
+            "description": "Define set of bad characters not to use"
+          },
+          {
+            "command": "msfvenom -i <num>",
+            "description": "Define number of times to use encoder"
+          },
+          {
+            "command": "msfvenom -x <file>",
+            "description": "Define a custom file to use as template"
+          },
+          {
+            "command": "msfvenom -o <output>",
+            "description": "Save the payload to an output file"
+          },
+          {
+            "command": "msfvenom -h",
+            "description": "Help"
+          }
         ]
       }
     ],
@@ -726,111 +885,291 @@
         "name": "A01:2021 – Broken Access Control",
         "description": "Failures in enforcing permissions allowing attackers to access unauthorized functionality or data.",
         "commands": [
-          { "command": "owasp-doc --view \"Authorization\"", "description": "Authorization Cheat Sheet" },
-          { "command": "owasp-doc --view \"IDOR Prevention\"", "description": "Insecure Direct Object Reference Prevention Cheat Sheet" },
-          { "command": "owasp-doc --view \"Transaction Auth\"", "description": "Transaction Authorization Cheat Sheet" },
-          { "command": "owasp-doc --view \"CSRF Prevention\"", "description": "Cross-Site Request Forgery Prevention Cheat Sheet" }
+          {
+            "command": "Authorization Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Insecure Direct Object Reference Prevention Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Transaction Authorization Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Cross-Site Request Forgery Prevention Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          }
         ]
       },
       {
         "name": "A02:2021 – Cryptographic Failures",
         "description": "Failures related to cryptography (or lack thereof) which often lead to sensitive data exposure.",
         "commands": [
-          { "command": "owasp-doc --view \"Cryptographic Storage\"", "description": "Cryptographic Storage Cheat Sheet" },
-          { "command": "owasp-doc --view \"TLS\"", "description": "Transport Layer Security Cheat Sheet" },
-          { "command": "owasp-doc --view \"HSTS\"", "description": "HTTP Strict Transport Security Cheat Sheet" },
-          { "command": "owasp-doc --view \"Secrets Management\"", "description": "Secrets Management Cheat Sheet" },
-          { "command": "owasp-doc --view \"Key Management\"", "description": "Key Management Cheat Sheet" },
-          { "command": "owasp-doc --view \"Pinning\"", "description": "Pinning Cheat Sheet" }
+          {
+            "command": "Cryptographic Storage Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Transport Layer Security Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "HTTP Strict Transport Security Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Secrets Management Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Key Management Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Pinning Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          }
         ]
       },
       {
         "name": "A03:2021 – Injection",
         "description": "Vulnerabilities where user-supplied data is not validated, filtered, or sanitized by the application.",
         "commands": [
-          { "command": "owasp-doc --view \"Injection Prevention\"", "description": "Injection Prevention Cheat Sheet" },
-          { "command": "owasp-doc --view \"LDAP Injection Prevention\"", "description": "LDAP Injection Prevention Cheat Sheet" },
-          { "command": "owasp-doc --view \"OS Command Injection Defense\"", "description": "OS Command Injection Defense Cheat Sheet" },
-          { "command": "owasp-doc --view \"Injection Prevention in Java\"", "description": "Injection Prevention in Java Cheat Sheet" },
-          { "command": "owasp-doc --view \"SQL Injection Prevention\"", "description": "SQL Injection Prevention Cheat Sheet" },
-          { "command": "owasp-doc --view \"Query Parameterization\"", "description": "Query Parameterization Cheat Sheet" },
-          { "command": "owasp-doc --view \"XSS Prevention\"", "description": "Cross Site Scripting Prevention Cheat Sheet" },
-          { "command": "owasp-doc --view \"DOM based XSS Prevention\"", "description": "DOM based XSS Prevention Cheat Sheet" },
-          { "command": "owasp-doc --view \"XSS Filter Evasion\"", "description": "XSS Filter Evasion Cheat Sheet" },
-          { "command": "owasp-doc --view \"CSP\"", "description": "Content Security Policy Cheat Sheet" }
+          {
+            "command": "Injection Prevention Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "LDAP Injection Prevention Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "OS Command Injection Defense Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Injection Prevention in Java Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "SQL Injection Prevention Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Query Parameterization Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Cross Site Scripting Prevention Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "DOM based XSS Prevention Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "XSS Filter Evasion Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Content Security Policy Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          }
         ]
       },
       {
         "name": "A04:2021 – Insecure Design",
         "description": "Risks related to design flaws, requiring the use of threat modeling and secure design patterns.",
         "commands": [
-          { "command": "owasp-doc --view \"Threat Modeling\"", "description": "Threat Modeling Cheat Sheet" },
-          { "command": "owasp-doc --view \"Abuse Case\"", "description": "Abuse Case Cheat Sheet" },
-          { "command": "owasp-doc --view \"Attack Surface Analysis\"", "description": "Attack Surface Analysis Cheat Sheet" }
+          {
+            "command": "Threat Modeling Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Abuse Case Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Attack Surface Analysis Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          }
         ]
       },
       {
         "name": "A05:2021 – Security Misconfiguration",
         "description": "Insecure default settings, incomplete configurations, or misconfigured HTTP headers.",
         "commands": [
-          { "command": "owasp-doc --view \"IaC Security\"", "description": "Infrastructure as Code Security Cheat Sheet" },
-          { "command": "owasp-doc --view \"XXE Prevention\"", "description": "XML External Entity Prevention Cheat Sheet" },
-          { "command": "owasp-doc --view \"PHP Configuration\"", "description": "PHP Configuration Cheat Sheet" },
-          { "command": "owasp-doc --view \"Docker Security\"", "description": "Docker Security Cheat Sheet" }
+          {
+            "command": "Infrastructure as Code Security Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "XML External Entity Prevention Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "PHP Configuration Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Docker Security Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          }
         ]
       },
       {
         "name": "A06:2021 – Vulnerable and Outdated Components",
         "description": "Exploitation of vulnerabilities in outdated third-party frameworks, libraries, and components.",
         "commands": [
-          { "command": "owasp-doc --view \"Dependency Management\"", "description": "Vulnerable Dependency Management Cheat Sheet" },
-          { "command": "owasp-doc --view \"Third Party JS\"", "description": "Third Party JavaScript Management Cheat Sheet" },
-          { "command": "owasp-doc --view \"npm Security\"", "description": "npm Security best practices" }
+          {
+            "command": "Vulnerable Dependency Management Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Third Party JavaScript Management Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "npm Security best practices",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          }
         ]
       },
       {
         "name": "A07:2021 – Identification and Authentication Failures",
         "description": "Issues when user identities, authentication, and session management are not implemented securely.",
         "commands": [
-          { "command": "owasp-doc --view \"Authentication\"", "description": "Authentication Cheat Sheet" },
-          { "command": "owasp-doc --view \"Session Management\"", "description": "Session Management Cheat Sheet" },
-          { "command": "owasp-doc --view \"Forgot Password\"", "description": "Forgot Password Cheat Sheet" },
-          { "command": "owasp-doc --view \"Security Questions\"", "description": "Choosing and Using Security Questions Cheat Sheet" },
-          { "command": "owasp-doc --view \"Credential Stuffing\"", "description": "Credential Stuffing Prevention Cheat Sheet" },
-          { "command": "owasp-doc --view \"Denial of Service\"", "description": "Denial of Service Cheat Sheet" },
-          { "command": "owasp-doc --view \"JWT for Java\"", "description": "JSON Web Token for Java Cheat Sheet" },
-          { "command": "owasp-doc --view \"MFA\"", "description": "Multifactor Authentication Cheat Sheet" },
-          { "command": "owasp-doc --view \"Password Storage\"", "description": "Password Storage Cheat Sheet" },
-          { "command": "owasp-doc --view \"SAML Security\"", "description": "SAML Security Cheat Sheet" }
+          {
+            "command": "Authentication Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Session Management Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Forgot Password Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Choosing and Using Security Questions Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Credential Stuffing Prevention Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Denial of Service Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "JSON Web Token for Java Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Multifactor Authentication Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Password Storage Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "SAML Security Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          }
         ]
       },
       {
         "name": "A08:2021 – Software and Data Integrity Failures",
         "description": "Code and infrastructure that does not protect against integrity violations.",
         "commands": [
-          { "command": "owasp-doc --view \"Deserialization\"", "description": "Deserialization Cheat Sheet" }
+          {
+            "command": "Deserialization Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          }
         ]
       },
       {
         "name": "A09:2021 – Security Logging and Monitoring Failures",
         "description": "Failures in logging and monitoring which allow attackers to further extract data or persist in systems.",
         "commands": [
-          { "command": "owasp-doc --view \"Logging\"", "description": "Logging Cheat Sheet" },
-          { "command": "owasp-doc --view \"Logging Vocabulary\"", "description": "Application Logging Vocabulary Cheat Sheet" }
+          {
+            "command": "Logging Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          },
+          {
+            "command": "Application Logging Vocabulary Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          }
         ]
       },
       {
         "name": "A10:2021 – Server-Side Request Forgery (SSRF)",
         "description": "Flaws where a web application fetches a remote resource without validating the user-supplied URL.",
         "commands": [
-          { "command": "owasp-doc --view \"SSRF Prevention\"", "description": "Server Side Request Forgery Prevention Cheat Sheet" }
+          {
+            "command": "Server Side Request Forgery Prevention Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          }
         ]
       },
       {
         "name": "A11:2021 – Next Steps",
         "description": "Additional guidelines and next steps for maintaining secure applications.",
         "commands": [
-          { "command": "owasp-doc --view \"Next Steps DoS\"", "description": "Denial of Service Cheat Sheet" }
+          {
+            "command": "Denial of Service Cheat Sheet",
+            "description": "OWASP Related Cheat Sheet",
+            "isReadOnly": true
+          }
         ]
       }
     ],

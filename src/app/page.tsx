@@ -93,9 +93,9 @@ export default function Home() {
               Start Learning
               <Play className="w-4 h-4 fill-current group-hover:translate-x-1 transition-transform" />
             </Link>
-            <button className="px-8 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold transition-all backdrop-blur-md">
+            <Link href="/roadmap" className="px-8 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold transition-all backdrop-blur-md inline-block">
               View Roadmap
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>
