@@ -24,6 +24,7 @@ export default function ModulePage() {
   const module = (hackingData as Module[]).find(m => m.id === id);
   const [mode, setMode] = useState<'explanation' | 'quick'>('explanation');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedStep, setSelectedStep] = useState<string | null>(null);
 
   if (!module) {
     return (
@@ -35,14 +36,18 @@ export default function ModulePage() {
     );
   }
 
-  // Filter tools and commands based on search
+  // Filter tools and commands based on search and selected attack chain step
   const filteredTools = module.tools.map(tool => ({
     ...tool,
     commands: tool.commands.filter(cmd => 
       cmd.command.toLowerCase().includes(searchQuery.toLowerCase()) ||
       cmd.description.toLowerCase().includes(searchQuery.toLowerCase())
     )
-  })).filter(tool => tool.commands.length > 0 || tool.name.toLowerCase().includes(searchQuery.toLowerCase()));
+  })).filter(tool => {
+    const matchesSearch = tool.commands.length > 0 || tool.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesStep = selectedStep ? tool.name.toLowerCase().includes(selectedStep.toLowerCase()) : true;
+    return matchesSearch && matchesStep;
+  });
 
   return (
     <div className="max-w-6xl mx-auto space-y-12 pb-20">
@@ -94,13 +99,27 @@ export default function ModulePage() {
 
       {/* Attack Chain Visualizer */}
       <section>
-        <div className="flex items-center gap-3 mb-8">
-          <div className="w-8 h-8 rounded-lg bg-[var(--matrix-green)]/20 flex items-center justify-center">
-            <Layout className="w-4 h-4 text-[var(--matrix-green)]" />
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-[var(--matrix-green)]/20 flex items-center justify-center">
+              <Layout className="w-4 h-4 text-[var(--matrix-green)]" />
+            </div>
+            <h2 className="text-xl uppercase tracking-widest font-black">Attack Chain Flow</h2>
           </div>
-          <h2 className="text-xl uppercase tracking-widest font-black">Attack Chain Flow</h2>
+          {selectedStep && (
+            <button 
+              onClick={() => setSelectedStep(null)}
+              className="text-[10px] font-mono text-[var(--matrix-green)] hover:text-white transition-colors border border-[var(--matrix-green)]/30 px-3 py-1 rounded-full bg-[var(--matrix-green)]/5"
+            >
+              RESET FILTER [X]
+            </button>
+          )}
         </div>
-        <AttackFlow steps={module.attackChain} />
+        <AttackFlow 
+          steps={module.attackChain} 
+          activeStep={selectedStep}
+          onStepClick={setSelectedStep}
+        />
       </section>
 
       {/* Controls & Tools */}
@@ -110,7 +129,14 @@ export default function ModulePage() {
             <div className="w-8 h-8 rounded-lg bg-[var(--matrix-green)]/20 flex items-center justify-center">
               <TerminalIcon className="w-4 h-4 text-[var(--matrix-green)]" />
             </div>
-            <h2 className="text-xl uppercase tracking-widest font-black">Tool Explorer</h2>
+            <div className="flex flex-col">
+              <h2 className="text-xl uppercase tracking-widest font-black">Tool Explorer</h2>
+              {selectedStep && (
+                <span className="text-[10px] font-mono text-[var(--matrix-green)] animate-pulse">
+                  FILTERED BY: {selectedStep.toUpperCase()}
+                </span>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center gap-4">
@@ -168,7 +194,17 @@ export default function ModulePage() {
             ))
           ) : (
             <div className="p-12 text-center glass rounded-3xl border-dashed">
-              <p className="text-gray-500 font-mono">No commands found matching "{searchQuery}"</p>
+              <p className="text-gray-500 font-mono">
+                No commands found matching {selectedStep ? `"${selectedStep}" in ` : ""} "{searchQuery}"
+              </p>
+              {selectedStep && (
+                <button 
+                  onClick={() => setSelectedStep(null)}
+                  className="mt-4 text-xs text-[var(--matrix-green)] underline underline-offset-4"
+                >
+                  Clear all filters
+                </button>
+              )}
             </div>
           )}
         </div>

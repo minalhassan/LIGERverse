@@ -24,13 +24,14 @@ import { cn } from '@/lib/utils';
 import { GlobalSearch } from './GlobalSearch';
 
 const navItems = [
-  { id: 'linux-fundamentals', title: 'Linux Fundamentals', icon: TerminalIcon },
+  { id: 'ethical-hacking', title: 'Ethical Hacking', icon: Shield },
+  { id: 'fundamental-of-hacking', title: 'Fundamentals', icon: TerminalIcon },
   { id: 'system-hacking', title: 'System Hacking', icon: Cpu },
   { id: 'web-hacking', title: 'Web Hacking', icon: Globe },
   { id: 'file-hacking', title: 'File Hacking', icon: FileCode },
   { id: 'cryptography', title: 'Cryptography', icon: Lock },
   { id: 'forensics', title: 'Forensics', icon: Search },
-  { id: 'password-cracking', title: 'Password Cracking', icon: Shield },
+  { id: 'password-cracking', title: 'Password Cracking', icon: ShieldAlert },
   { id: 'privilege-escalation', title: 'Privilege Escalation', icon: Zap },
   { id: 'metasploit-framework', title: 'Metasploit Framework', icon: Target },
   { id: 'owasp-top-10', title: 'OWASP Top 10', icon: ShieldAlert },

